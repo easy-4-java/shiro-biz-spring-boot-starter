@@ -580,32 +580,6 @@
 		    </exclusions>
 		</dependency>
 
-		
-		<dependency>
-			<groupId>io.github.hiwepy</groupId>
-			<artifactId>kaptcha-spring-boot-starter</artifactId>
-			<version>${spring-boot-starter-kaptcha.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.hiwepy</groupId>
-			<artifactId>jcaptcha-spring-boot-starter</artifactId>
-			<version>${spring-boot-starter-jcaptcha.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.hiwepy</groupId>
-			<artifactId>simplecaptcha-spring-boot-starter</artifactId>
-			<version>${spring-boot-starter-simplecaptcha.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.hiwepy</groupId>
-			<artifactId>smartcaptcha-spring-boot-starter</artifactId>
-			<version>${spring-boot-starter-smartcaptcha.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>

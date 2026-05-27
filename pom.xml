@@ -605,12 +605,6 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.hiwepy</groupId>
-			<artifactId>jcaptcha-spring-boot-starter</artifactId>
-			<version>${spring-boot-starter-jcaptcha.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.hiwepy</groupId>
 			<artifactId>simplecaptcha-spring-boot-starter</artifactId>
 			<version>${spring-boot-starter-simplecaptcha.version}</version>
 			<scope>provided</scope>

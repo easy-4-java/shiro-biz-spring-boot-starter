@@ -10,12 +10,12 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>io.github.hiwepy</groupId>
+	<groupId>io.github.easy4j</groupId>
 	<artifactId>shiro-biz-spring-boot-starter</artifactId>
 	<description>Spring Boot Starter For Shiro Biz</description>
 	<version>3.0.x.20260527-SNAPSHOT</version>
 	<name>${project.groupId}:${project.artifactId}</name>
-	<url>https://github.com/hiwepy/${project.artifactId}</url>
+	<url>https://github.com/easy-4-java/${project.artifactId}</url>
 	<packaging>jar</packaging>
 
 	<licenses>
@@ -26,9 +26,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:https:github.com/hiwepy/${project.artifactId}.git</connection>
-		<developerConnection>scm:git:https:github.com/hiwepy/${project.artifactId}.git</developerConnection>
-		<url>https:github.com/hiwepy/${project.artifactId}</url>
+		<connection>scm:git:https:github.com/easy-4-java/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:https:github.com/easy-4-java/${project.artifactId}.git</developerConnection>
+		<url>https:github.com/easy-4-java/${project.artifactId}</url>
 		<tag>${project.artifactId}</tag>
 	</scm>
 
@@ -505,7 +505,7 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.github.hiwepy/shiro-biz -->
 		<dependency>
-		    <groupId>io.github.hiwepy</groupId>
+		    <groupId>io.github.easy4j</groupId>
 			<artifactId>shiro-biz</artifactId>
 			<version>${shiro-biz.version}</version>
 		</dependency>
@@ -549,7 +549,7 @@
 		    <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.github.hiwepy</groupId>
+			<groupId>io.github.easy4j</groupId>
 			<artifactId>shiro-j2cache</artifactId>
 			<version>${shiro-j2cache.version}</version>
 			<scope>provided</scope>

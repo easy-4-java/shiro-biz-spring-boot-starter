@@ -432,6 +432,10 @@
         <spring-boot-starter-jcaptcha.version>2.7.x.20260527-SNAPSHOT</spring-boot-starter-jcaptcha.version>
         <spring-boot-starter-simplecaptcha.version>2.7.x.20260527-SNAPSHOT</spring-boot-starter-simplecaptcha.version>
         <spring-boot-starter-smartcaptcha.version>2.7.x.20260527-SNAPSHOT</spring-boot-starter-smartcaptcha.version>
+                <commons-io.version>2.22.0</commons-io.version>
+                <ehcache.version>2.10.9.2</ehcache.version>
+                <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+                <slf4j.version>2.0.18</slf4j.version>
     </properties>
 
     <dependencies>
@@ -441,7 +445,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>${javax.servlet-api.version}</version>
             <optional>true</optional>
         </dependency>
         <!-- Java Websocket API -->
@@ -455,13 +459,13 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.13</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -568,7 +572,7 @@
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>2.10.9.2</version>
+            <version>${ehcache.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.ehcache.integrations.shiro/shiro-ehcache3 -->
@@ -697,7 +701,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.11.0</version>
+            <version>${commons-io.version}</version>
             <scope>test</scope>
         </dependency>
             <!-- For JUnit Jupiter -->
@@ -707,5 +711,40 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>

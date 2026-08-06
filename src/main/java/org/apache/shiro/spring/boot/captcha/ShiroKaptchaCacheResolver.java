@@ -23,7 +23,11 @@ import com.google.code.kaptcha.util.Config;
 
 /**
  * 验证Kaptcha生成的验证码
+<<<<<<< Updated upstream
  * @author 		： <a href="https://github.com/vindell">vindell</a>
+=======
+ * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+>>>>>>> Stashed changes
  */
 public class ShiroKaptchaCacheResolver implements KaptchaResolver, CaptchaResolver {
 

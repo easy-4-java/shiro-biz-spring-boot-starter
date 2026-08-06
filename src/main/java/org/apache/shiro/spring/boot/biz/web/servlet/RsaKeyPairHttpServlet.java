@@ -4,7 +4,11 @@ import org.apache.shiro.biz.web.servlet.AuthenticatingHttpServlet;
 
 /**
  * RSA登录工具
+<<<<<<< Updated upstream
  * @author 		： <a href="https://github.com/vindell">vindell</a>
+=======
+ * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+>>>>>>> Stashed changes
  */
 public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 

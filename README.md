@@ -1,101 +1,199 @@
+<a id="readme-top"></a>
+
+<div align="center">
+
 # shiro-biz-spring-boot-starter
-shiro starter for spring boot
 
-### 说明
+**Spring Boot Starter for shiro-biz**
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.easy4j/shiro-biz-spring-boot-starter)](https://github.com/easy-4-java/shiro-biz-spring-boot-starter)
+[![Java](https://img.shields.io/badge/Java-17-orange)](#3-requirements-and-compatibility)
+[![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
- > 基于 Shiro 的 Spring Boot Starter 实现
+[简体中文](./README.zh-CN.md) | [English](./README.md)
 
+[Positioning](#1-positioning) · [Capabilities](#2-core-capabilities) ·
+[Dependency](#5-dependency) · [Quick Start](#6-quick-start) ·
+[Configuration](#7-configuration-reference) · [Versions](#9-version-lines-and-compatibility) ·
+[Build](#10-build-and-test) · [License](#12-license)
 
-1. Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码学和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。
-2. shiro-biz-spring-boot-starter 是在引用 [shiro-spring-boot-starter](http://mvnrepository.com/artifact/org.apache.shiro/shiro-spring-boot-starter "shiro-spring-boot-starter")、[shiro-spring-boot-web-starter](http://mvnrepository.com/artifact/org.apache.shiro/shiro-spring-boot-web-starter "shiro-spring-boot-web-starter") 的基础上整合 [shiro-biz](https://github.com/vindell/shiro-biz "shiro-biz") 的 Spring Boot 整合；
-3. 完成了基于Shiro的权限的控制
+</div>
 
+---
 
-### Maven
+> **Current Version**：`4.1.x.20260527-SNAPSHOT`<br>
+> **JDK Baseline**：`17`<br>
+> **Group ID**：`io.github.easy4j`<br>
+> **Artifact ID**：`shiro-biz-spring-boot-starter`<br>
+> **License**：Apache License 2.0<br>
 
-``` xml
+## 1. Positioning
+
+**shiro-biz-spring-boot-starter** is a Spring Boot starter that integrates **shiro-biz** for applications using shiro-biz. It provides auto-configuration, property binding, and ready-to-use beans so that applications can consume shiro-biz capabilities with minimal setup.
+
+| Dimension | Description |
+|---|---|
+| Type | Spring Boot Starter |
+| Consumers | Spring Boot applications using shiro-biz |
+| Core Capabilities | auto-configuration, property binding, ready-to-use beans for shiro-biz |
+| JDK | `17` |
+| Coordinates | `io.github.easy4j:shiro-biz-spring-boot-starter:4.1.x.20260527-SNAPSHOT` |
+| Config Prefix | `shiro.biz` |
+
+## 2. Core Capabilities
+
+| Capability | Status | Description |
+|---|:---:|---|
+| Auto-configuration | ✅ Stable | Registers shiro-biz beans automatically |
+| Property Binding | ✅ Stable | Binds `shiro.biz.*` to `ShiroBizAnnotationProperties` |
+| `DefaultAdvisorAutoProxyCreator` bean | ✅ Stable | Auto-registered via ShiroBizAnnotationProcessorAutoConfiguration, ShiroBizAutoConfiguration, ShiroBizWebAutoConfiguration, ShiroEndpointAutoConfiguration |
+
+## 3. Requirements and Compatibility
+
+| Dependency | Minimum | Evidence |
+|---|---:|---|
+| JDK | `17` | `pom.xml` |
+| Spring Boot | `4.1.0-M4` | `pom.xml` parent |
+| Maven | `3.6+` | Maven Enforcer |
+
+## 4. Auto-configuration
+
+The starter auto-configures the following beans:
+
+| Bean | Condition | Missing Behavior |
+|---|---|---|
+| `DefaultAdvisorAutoProxyCreator` | classpath + property | not created |
+| `PermissionResolver` | classpath + property | not created |
+| `RolePermissionResolver` | classpath + property | not created |
+| `CredentialsMatcher` | classpath + property | not created |
+| `ShiroEndpoint` | classpath + property | not created |
+
+Auto-configuration registration:
+
+- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (Spring Boot 2.7+ / 3.x / 4.x)
+- `META-INF/spring.factories` (Spring Boot 2.x legacy)
+
+## 5. Dependency
+
+```xml
 <dependency>
-	<groupId>io.github.hiwepy</groupId>
-	<artifactId>shiro-biz-spring-boot-starter</artifactId>
-	<version>${project.version}</version>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>shiro-biz-spring-boot-starter</artifactId>
+    <version>4.1.x.20260527-SNAPSHOT</version>
 </dependency>
 ```
-	
 
-### 配置参考
+This starter depends on the following components (managed by ddd4j BOM):
 
- > application.yml
- 
-``` yml
-################################################################################################################  
-###Shiro 权限控制基本配置：  
-################################################################################################################
-shiro:
-  annotations: 
-    enabled: true
-    proxy-target-class: true
-  authentication-caching-enabled: false
-  authentication-cache-name: SHIRO-AUTHC
-  authorization-caching-enabled: false 
-  authorization-cache-name: SHIRO-AUTHZ
-  caching-enabled: false
-  cache:
-    type: ehcache
-  enabled: true
-  kaptcha:
-    enabled: true
-    retry-times-when-access-denied: 3
-  failure-url: /error
-  http:
-    header:
-      access-control-allow-methods: PUT,POST,GET,DELETE,OPTIONS
-  jwt:
-    enabled: true
-  login-url: /authz/login/slogin
-  redirect-url: /authz/login/index
-  success-url: /index
-  session-creation-enabled: false
-  session-validation-scheduler-enabled: false
-  session-validation-interval: 20000
-  session-stateless: true
-  session-storage-enabled: false
-  session-timeout: 1800000
-  unauthorized-url: /error
-  user-native-session-manager: false
-  web: 
-    enabled: true
-  filter-chain-definition-map: 
-    '[/]' : anon
-    '[/**/favicon.ico]' : anon
-    '[/webjars/**]' : anon
-    '[/assets/**]' : anon
-    '[/error*]' : anon
-    '[/logo/**]' : anon
-    '[/swagger-ui.html**]' : anon
-    '[/swagger-resources/**]' : anon
-    '[/v2/**]' : anon
-    '[/kaptcha*]' : anon
-    '[/admin]' : anon
-    '[/admin/assets/**]' : anon
-    '[/admin/applications]' : anon
-    '[/admin/applications/**]' : anon
-    '[/admin/notifications]' : anon
-    '[/admin/notifications/**]' : anon
-    '[/admin/instances]' : anon
-    '[/admin/instances/**]' : anon
-    '[/sockets/**]' : anon
-    '[/expiry]' : cros,withinExpiry
-    '[/authz/login/slogin]' : cros,authc
-    '[/logout]' : logout
+```xml
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>shiro-biz</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>shiro-j2cache</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>kaptcha-spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>jcaptcha-spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>simplecaptcha-spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>smartcaptcha-spring-boot-starter</artifactId>
+</dependency>
 ```
 
-### Sample
+## 6. Quick Start
 
-[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-shiro-biz](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-shiro-biz "spring-boot-sample-shiro-biz")
+### 6.1 Add dependency
 
-### 参考资料
+Add the dependency above to your `pom.xml`.
 
-http://shiro.apache.org/documentation.html
+### 6.2 Configure
 
-http://jinnianshilongnian.iteye.com/blog/2018398
+```yaml
+shiro.biz:
+  enabled: true
+```
+
+### 6.3 Use the bean
+
+```java
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+Then inject the auto-configured bean in your code:
+
+```java
+@Autowired
+private DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator;
+```
+
+## 7. Configuration Reference
+
+### 7.1 Config Prefix
+
+`shiro.biz`
+
+### 7.2 Configuration Items
+
+| Property | Type | Default | Required | Description | Sensitive |
+|---|---|---|:---:|---|:---:|
+| `shiro.biz.enabled` | boolean | `true` | No | Enable the starter | No |
+<!-- additional properties below -->
+
+## 8. Version Lines and Compatibility
+
+| Branch | JDK | Spring Boot | Component Version | Status |
+|---|---:|---:|---|:---:|
+| `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
+| `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
+| `4.0.x` / `4.1.x` | `17+` | 4.x | `3.0.x` | Active |
+
+## 9. Build and Test
+
+```bash
+mvn clean verify
+mvn -pl shiro-biz-spring-boot-starter -am test
+```
+
+## 10. Troubleshooting
+
+| Symptom | Diagnosis | Resolution |
+|---|---|---|
+| Bean not created | Check auto-configuration report | Verify `shiro.biz.enabled=true` and classpath |
+| `ClassNotFoundException` | Missing dependency | Add the required module |
+| Version conflict | `mvn dependency:tree` | Use BOM for version alignment |
+
+## 11. Contribution
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Run `mvn clean verify` before submitting.
+4. Submit a pull request.
+
+## 12. License
+
+This project is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+---
+
+<div align="center">
+
+[Back to top](#readme-top) · [Issues](https://github.com/easy-4-java/shiro-biz-spring-boot-starter/issues) · [Repository](https://github.com/easy-4-java/shiro-biz-spring-boot-starter)
+
+</div>

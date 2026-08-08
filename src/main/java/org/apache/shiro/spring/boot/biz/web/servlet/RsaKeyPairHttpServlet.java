@@ -4,7 +4,7 @@ import org.apache.shiro.biz.web.servlet.AuthenticatingHttpServlet;
 
 /**
  * RSA登录工具
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 

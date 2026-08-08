@@ -34,7 +34,7 @@ import com.google.common.collect.Maps;
 
 /**
  * {@link Endpoint} to expose shiro info.
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 @Endpoint(id = "shiro")
 public class ShiroEndpoint {

@@ -12,7 +12,7 @@ import freemarker.template.TemplateModelException;
 
 /**
  * 提供Freemarker模板判断是否启用验证码功能
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class CaptchaEnabled implements TemplateMethodModelEx {
 

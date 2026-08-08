@@ -21,7 +21,7 @@ import com.hazelcast.config.Config;
 
 /**
  * Hazelcast 配置
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 @ConfigurationProperties(ShiroHazelcastCacheProperties.PREFIX)
 public class ShiroHazelcastCacheProperties extends Config {

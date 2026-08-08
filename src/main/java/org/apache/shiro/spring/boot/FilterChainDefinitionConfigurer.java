@@ -19,7 +19,7 @@ import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 
 /**
  * TODO
- * @author 		： <a href="https://github.com/hiwepy">wandl</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public interface FilterChainDefinitionConfigurer {
 

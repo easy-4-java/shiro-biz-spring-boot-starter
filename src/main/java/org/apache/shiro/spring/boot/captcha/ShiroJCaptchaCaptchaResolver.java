@@ -15,7 +15,7 @@
  */
 package org.apache.shiro.spring.boot.captcha;
 
-import javax.servlet.ServletRequest;
+import jakarta.servlet.ServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -28,7 +28,7 @@ import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
 /**
  * 验证JCaptcha生成的验证码
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class ShiroJCaptchaCaptchaResolver implements CaptchaResolver {
 

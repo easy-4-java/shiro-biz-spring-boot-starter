@@ -23,7 +23,7 @@ import com.google.code.kaptcha.util.Config;
 
 /**
  * 验证Kaptcha生成的验证码
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class ShiroKaptchaCacheResolver implements KaptchaResolver, CaptchaResolver {
 

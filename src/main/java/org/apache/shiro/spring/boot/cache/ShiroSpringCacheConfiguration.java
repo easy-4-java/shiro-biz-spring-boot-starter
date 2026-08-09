@@ -2,7 +2,6 @@ package org.apache.shiro.spring.boot.cache;
 
 import org.apache.shiro.biz.cache.spring.SpringCacheManager;
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -16,8 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Auto-configuration for Shiro Spring cache manager. Activates when the {@code shiro.cache.type}
- * property is set to "spring". Delegates to the Spring {@link org.springframework.cache.CacheManager},
- * with special handling for EhCache-based Spring cache managers.
+ * property is set to "spring". Delegates to the Spring {@link org.springframework.cache.CacheManager}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
@@ -32,20 +30,12 @@ public class ShiroSpringCacheConfiguration implements ApplicationContextAware {
 
 	/**
 	 * Creates a Shiro {@link CacheManager} that delegates to the Spring cache manager.
-	 * If the Spring cache manager is an EhCache-based manager, an EhCacheManager is returned directly.
 	 *
 	 * @return the configured Shiro cache manager
 	 */
 	@Bean
 	public CacheManager shiroCacheManager() {
 		org.springframework.cache.CacheManager springCacheManager = getApplicationContext().getBean(org.springframework.cache.CacheManager.class);
-		// EhCache
-		if (null != springCacheManager && springCacheManager instanceof org.springframework.cache.ehcache.EhCacheCacheManager) {
-			EhCacheManager ehCacheManager = new EhCacheManager();
-			ehCacheManager.setCacheManager(((org.springframework.cache.ehcache.EhCacheCacheManager) springCacheManager).getCacheManager());
-			return ehCacheManager;
-		}
-		// OTHER
 		return new SpringCacheManager(springCacheManager);
 	}
 

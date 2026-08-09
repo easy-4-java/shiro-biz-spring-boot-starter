@@ -2,11 +2,8 @@ package org.apache.shiro.spring.boot;
 
 import java.util.stream.Collectors;
 
-import jakarta.servlet.DispatcherType;
-
 import org.apache.shiro.biz.authz.principal.ShiroPrincipal;
 import org.apache.shiro.biz.spring.ShiroFilterProxyFactoryBean;
-import org.apache.shiro.biz.utils.StringUtils;
 import org.apache.shiro.biz.web.filter.HttpServletRequestEscapeHtml4Filter;
 import org.apache.shiro.biz.web.filter.HttpServletRequestHeaderFilter;
 import org.apache.shiro.biz.web.filter.HttpServletRequestMethodFilter;
@@ -24,6 +21,8 @@ import org.apache.shiro.spring.boot.biz.ShiroBizFilterFactoryBean;
 import org.apache.shiro.spring.boot.biz.ShiroHttpServletHeaderProperties;
 import org.apache.shiro.spring.boot.biz.ShiroHttpServletReferrerProperties;
 import org.apache.shiro.spring.boot.biz.authc.BizLogoutFilter;
+import org.apache.shiro.spring.boot.utils.JakartaFilterAdapter;
+import org.apache.shiro.spring.boot.utils.StringUtils;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.spring.web.config.AbstractShiroWebFilterConfiguration;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
@@ -66,7 +65,7 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 
 	@Autowired
 	private ShiroBizProperties bizProperties;
-	
+
 	/**
 	 * Registers the system logout filter. Delegates to {@link BizLogoutFilter} and configures
 	 * logout listeners, POST-only logout enforcement, and the post-logout redirect URL.
@@ -76,21 +75,21 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("logout")
 	@ConditionalOnMissingBean(name = "logout")
-	public FilterRegistrationBean<BizLogoutFilter> logoutFilter(ObjectProvider<LogoutListener> logoutListenerProvider){
-		
-		FilterRegistrationBean<BizLogoutFilter> registration = new FilterRegistrationBean<BizLogoutFilter>(); 
+	public FilterRegistrationBean logoutFilter(ObjectProvider<LogoutListener> logoutListenerProvider){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
 		BizLogoutFilter logoutFilter = new BizLogoutFilter();
 		// 监听器
 		logoutFilter.setLogoutListeners(logoutListenerProvider.stream().collect(Collectors.toList()));
 		logoutFilter.setPostOnlyLogout(bizProperties.isPostOnlyLogout());
 		//登录注销后的重定向地址：直接进入登录页面
 		logoutFilter.setRedirectUrl(bizProperties.getRedirectUrl());
-		
-		registration.setFilter(logoutFilter);
-	    registration.setEnabled(false); 
+
+		registration.setFilter(new JakartaFilterAdapter(logoutFilter));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the HTML entity escaping filter that sanitizes request parameters.
 	 *
@@ -98,13 +97,13 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("escapeHtml4")
 	@ConditionalOnMissingBean(name = "escapeHtml4")
-	public FilterRegistrationBean<HttpServletRequestEscapeHtml4Filter> escapeHtml4Filter(){
-		FilterRegistrationBean<HttpServletRequestEscapeHtml4Filter> registration = new FilterRegistrationBean<HttpServletRequestEscapeHtml4Filter>();
-		registration.setFilter(new HttpServletRequestEscapeHtml4Filter());
-	    registration.setEnabled(false); 
+	public FilterRegistrationBean escapeHtml4Filter(){
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
+		registration.setFilter(new JakartaFilterAdapter(new HttpServletRequestEscapeHtml4Filter()));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the HTTP header filter for enforcing access-control headers.
 	 *
@@ -113,15 +112,15 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("headers")
 	@ConditionalOnMissingBean(name = "headers")
-	public FilterRegistrationBean<HttpServletRequestHeaderFilter> headerFilter(ShiroHttpServletHeaderProperties properties){
-		
-		FilterRegistrationBean<HttpServletRequestHeaderFilter> registration = new FilterRegistrationBean<HttpServletRequestHeaderFilter>();
+	public FilterRegistrationBean headerFilter(ShiroHttpServletHeaderProperties properties){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
 		HttpServletRequestHeaderFilter headFilter = new HttpServletRequestHeaderFilter(properties);
-		registration.setFilter(headFilter);
-	    registration.setEnabled(false); 
+		registration.setFilter(new JakartaFilterAdapter(headFilter));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the HTTP method filter that restricts allowed request methods.
 	 *
@@ -130,18 +129,21 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("methods")
 	@ConditionalOnMissingBean(name = "methods")
-	public FilterRegistrationBean<HttpServletRequestMethodFilter> methodFilter(ShiroHttpServletHeaderProperties properties){
-		
-		FilterRegistrationBean<HttpServletRequestMethodFilter> registration = new FilterRegistrationBean<HttpServletRequestMethodFilter>();
-		
+	public FilterRegistrationBean methodFilter(ShiroHttpServletHeaderProperties properties){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
+
 		HttpServletRequestMethodFilter methodFilter = new HttpServletRequestMethodFilter();
-		methodFilter.setAllowedHTTPMethods(StringUtils.tokenizeToStringArray(properties.getAccessControlAllowMethods()));
-		
-		registration.setFilter(methodFilter);
-	    registration.setEnabled(false); 
+		String methods = properties.getAccessControlAllowMethods();
+		if (methods != null && !methods.isEmpty()) {
+			methodFilter.setAllowedHTTPMethods(StringUtils.tokenizeToStringArray(methods));
+		}
+
+		registration.setFilter(new JakartaFilterAdapter(methodFilter));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the HTTP referrer filter for validating request referrer headers.
 	 *
@@ -150,15 +152,15 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("referrers")
 	@ConditionalOnMissingBean(name = "referrers")
-	public FilterRegistrationBean<HttpServletRequestReferrerFilter> referrerFilter(ShiroHttpServletReferrerProperties properties){
-		
-		FilterRegistrationBean<HttpServletRequestReferrerFilter> registration = new FilterRegistrationBean<HttpServletRequestReferrerFilter>();
+	public FilterRegistrationBean referrerFilter(ShiroHttpServletReferrerProperties properties){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
 		HttpServletRequestReferrerFilter referrerFilter = new HttpServletRequestReferrerFilter(properties);
-		registration.setFilter(referrerFilter);
-	    registration.setEnabled(false); 
+		registration.setFilter(new JakartaFilterAdapter(referrerFilter));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the session online status filter to handle forced session logout scenarios.
 	 *
@@ -168,19 +170,19 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Bean("sessionStatus")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
 	//@ConditionalOnMissingBean(name = "sessionStatus")
-	public FilterRegistrationBean<HttpServletSessionStatusFilter> sessionOnlineFilter(SessionManager sessionManager){
-		
-		FilterRegistrationBean<HttpServletSessionStatusFilter> registration = new FilterRegistrationBean<HttpServletSessionStatusFilter>();
-		
+	public FilterRegistrationBean sessionOnlineFilter(SessionManager sessionManager){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
+
 		HttpServletSessionStatusFilter sessionOnlineFilter = new HttpServletSessionStatusFilter();
 		sessionOnlineFilter.setLoginUrl(bizProperties.getLoginUrl());
 		sessionOnlineFilter.setSessionManager(sessionManager);
-		
-		registration.setFilter(sessionOnlineFilter);
-	    registration.setEnabled(false); 
+
+		registration.setFilter(new JakartaFilterAdapter(sessionOnlineFilter));
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the session deque filter to enforce unique session login, kicking out earlier sessions
 	 * when the maximum concurrent session limit is reached.
@@ -192,10 +194,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Bean("sessionDeque")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
 	//@ConditionalOnMissingBean(name = "sessionDeque")
-	public FilterRegistrationBean<HttpServletSessionDequeFilter> sessionDequeFilter(CacheManager cacheManager, SessionManager sessionManager){
-		
-		FilterRegistrationBean<HttpServletSessionDequeFilter> registration = new FilterRegistrationBean<HttpServletSessionDequeFilter>();
-		
+	public FilterRegistrationBean sessionDequeFilter(CacheManager cacheManager, SessionManager sessionManager){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
+
 		HttpServletSessionDequeFilter sessionDequeFilter = new HttpServletSessionDequeFilter() {
 
 			@Override
@@ -203,22 +205,22 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 				ShiroPrincipal sp = (ShiroPrincipal) principal;
 				return sp.getUserid();
 			}
-			
+
 		};
-		
+
 		sessionDequeFilter.setCacheManager(cacheManager);
 		sessionDequeFilter.setKickoutFirst(bizProperties.isKickoutFirst());
 		sessionDequeFilter.setSessionDequeCacheName(bizProperties.getSessionDequeCacheName());
 		sessionDequeFilter.setSessionManager(sessionManager);
 		sessionDequeFilter.setSessionMaximumKickout(bizProperties.getSessionMaximumKickout());
 		sessionDequeFilter.setRedirectUrl(bizProperties.getRedirectUrl());
-		
-		registration.setFilter(sessionDequeFilter);
-		
-	    registration.setEnabled(false); 
+
+		registration.setFilter(new JakartaFilterAdapter(sessionDequeFilter));
+
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the session expired filter to gracefully handle session expiration during AJAX requests.
 	 *
@@ -226,15 +228,15 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("sessionExpired")
 	@ConditionalOnMissingBean(name = "sessionExpired")
-	public FilterRegistrationBean<HttpServletSessionExpiredFilter> sessionExpiredFilter(){
-		
-		FilterRegistrationBean<HttpServletSessionExpiredFilter> registration = new FilterRegistrationBean<HttpServletSessionExpiredFilter>();
-		registration.setFilter(new HttpServletSessionExpiredFilter());
-		
-	    registration.setEnabled(false); 
+	public FilterRegistrationBean sessionExpiredFilter(){
+
+		FilterRegistrationBean registration = new FilterRegistrationBean<>();
+		registration.setFilter(new JakartaFilterAdapter(new HttpServletSessionExpiredFilter()));
+
+	    registration.setEnabled(false);
 	    return registration;
 	}
-	
+
 	/**
 	 * Registers the authentication failure counter. Uses request-based counting for stateless sessions
 	 * and session-based counting otherwise.
@@ -249,7 +251,7 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 		}
 		return new AuthenticatingFailureSessionCounter();
 	}
-	
+
 	/**
 	 * Creates and configures the {@link ShiroFilterFactoryBean} with the security manager,
 	 * login/success/unauthorized URLs, and the filter chain definition map.
@@ -260,24 +262,24 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
     @ConditionalOnMissingBean
     @Override
     protected ShiroFilterFactoryBean shiroFilterFactoryBean() {
-		
+
 		ShiroFilterProxyFactoryBean filterFactoryBean = new ShiroBizFilterFactoryBean();
 		filterFactoryBean.setStaticSecurityManagerEnabled(bizProperties.isStaticSecurityManagerEnabled());
-		
+
 		//登录地址：会话不存在时访问的地址
         filterFactoryBean.setLoginUrl(bizProperties.getLoginUrl());
   		//系统主页：登录成功后跳转路径
   		filterFactoryBean.setSuccessUrl(bizProperties.getSuccessUrl());
   		//异常页面：无权限时的跳转路径
   		filterFactoryBean.setUnauthorizedUrl(bizProperties.getUnauthorizedUrl());
-  		
+
   		//必须设置 SecurityManager
  		filterFactoryBean.setSecurityManager(securityManager);
  		//拦截规则
  		filterFactoryBean.setFilterChainDefinitionMap(shiroFilterChainDefinition.getFilterChainMap());
-      
+
  		return filterFactoryBean;
-        
+
     }
 
     /**
@@ -288,11 +290,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
      */
     @Bean(name = "filterShiroFilterRegistrationBean")
     @ConditionalOnMissingBean
-    protected FilterRegistrationBean<AbstractShiroFilter> filterShiroFilterRegistrationBean() throws Exception {
+    protected FilterRegistrationBean filterShiroFilterRegistrationBean() throws Exception {
 
-        FilterRegistrationBean<AbstractShiroFilter> filterRegistrationBean = new FilterRegistrationBean<AbstractShiroFilter>();
-        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR);
-        filterRegistrationBean.setFilter((AbstractShiroFilter) shiroFilterFactoryBean().getObject());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new JakartaFilterAdapter(shiroFilterFactoryBean().getObject()));
         filterRegistrationBean.setOrder(Ordered.LOWEST_PRECEDENCE);
 
         return filterRegistrationBean;

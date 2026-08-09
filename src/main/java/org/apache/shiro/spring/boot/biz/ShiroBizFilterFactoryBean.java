@@ -20,9 +20,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import jakarta.servlet.Filter;
+import javax.servlet.Filter;
 
 import org.apache.shiro.biz.spring.ShiroFilterProxyFactoryBean;
+import org.apache.shiro.spring.boot.utils.JakartaFilterAdapter;
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -31,7 +32,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.ObjectUtils;
 /**
  * A {@link ShiroFilterProxyFactoryBean} that discovers all {@link FilterRegistrationBean} instances
- * from the application context and adds their {@link jakarta.servlet.Filter} instances to the Shiro
+ * from the application context and adds their {@link javax.servlet.Filter} instances to the Shiro
  * filter chain. This ensures that filters registered as Spring beans but intended for Shiro are
  * properly included in the Shiro filter chain rather than the servlet container filter chain.
  *
@@ -40,9 +41,9 @@ import org.springframework.util.ObjectUtils;
  */
 @SuppressWarnings("rawtypes")
 public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean implements ApplicationContextAware  {
-	
+
 	private ApplicationContext applicationContext;
-	
+
 	/**
 	 * Collects all {@link FilterRegistrationBean} instances from the application context whose filters
 	 * are {@link AdviceFilter} subclasses, and merges them with the filters from the parent factory bean.
@@ -51,7 +52,7 @@ public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean imple
 	 */
 	@Override
 	public Map<String, Filter> getFilters() {
-		
+
 		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
 
 		Map<String, FilterRegistrationBean> beansOfType = getApplicationContext().getBeansOfType(FilterRegistrationBean.class);
@@ -59,18 +60,23 @@ public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean imple
 			Iterator<Entry<String, FilterRegistrationBean>> ite = beansOfType.entrySet().iterator();
 			while (ite.hasNext()) {
 				Entry<String, FilterRegistrationBean> entry = ite.next();
-				if (entry.getValue().getFilter() instanceof AdviceFilter) {
-					filters.put(entry.getKey(), entry.getValue().getFilter());
+				Object filterObj = entry.getValue().getFilter();
+				// Unwrap JakartaFilterAdapter to get the original javax.servlet.Filter
+				if (filterObj instanceof JakartaFilterAdapter) {
+					filterObj = ((JakartaFilterAdapter) filterObj).getDelegate();
+				}
+				if (filterObj instanceof AdviceFilter) {
+					filters.put(entry.getKey(), (Filter) filterObj);
 				}
 			}
 		}
-		
+
 		filters.putAll(super.getFilters());
-		
+
 		return filters;
-		
+
 	}
-	
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;

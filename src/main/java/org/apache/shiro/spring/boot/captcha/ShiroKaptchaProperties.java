@@ -17,6 +17,13 @@ package org.apache.shiro.spring.boot.captcha;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for Shiro captcha integration, controlling captcha enablement,
+ * retry limits, cache keys, and timeout settings.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShiroKaptchaProperties.PREFIX)
 public class ShiroKaptchaProperties {
 
@@ -32,23 +39,15 @@ public class ShiroKaptchaProperties {
 	 * Enable Shiro Captcha.
 	 */
 	private boolean enabled = false;
-	/** 失败重试次数：超出限制后要求输入验证码 . */
+	/** The number of failed retries before captcha is required, default is 3. */
 	private int retryTimesWhenAccessDenied = 3;
-	/**
-	 * 验证码缓存的key
-	 */
+	/** The cache key for storing the captcha text. */
 	private String storeKey;
-	/**
-	 * 验证码创建时间缓存的key
-	 */
+	/** The cache key for storing the captcha creation time. */
 	private String dateStoreKey;
-	/**
-	 * 验证码有效期；单位（毫秒），默认 60000
-	 */
+	/** The captcha validity period in milliseconds, default is 60000 (60 seconds). */
 	private long timeout = DEFAULT_CAPTCHA_TIMEOUT;
-	/**
-	 * 验证码缓存名称
-	 */
+	/** The cache name for captcha storage. */
 	private String cacheKey;
 
 	public boolean isEnabled() {

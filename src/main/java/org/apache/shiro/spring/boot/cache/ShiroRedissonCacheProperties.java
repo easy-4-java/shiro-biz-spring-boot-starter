@@ -22,8 +22,10 @@ import org.redisson.spring.cache.CacheConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Redisson 配置
+ * Configuration properties for the Shiro Redisson cache manager.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroRedissonCacheProperties.PREFIX)
 public class ShiroRedissonCacheProperties {

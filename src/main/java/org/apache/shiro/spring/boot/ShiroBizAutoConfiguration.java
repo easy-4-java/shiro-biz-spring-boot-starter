@@ -26,6 +26,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Auto-configuration for Shiro business-layer beans including realm listeners, permission resolvers,
+ * credentials matcher, and authentication failure handler.
+ * <p>This configuration is applied before the web and core Shiro auto-configurations to ensure
+ * that foundational beans are available for injection.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @AutoConfigureBefore({ShiroBizWebAutoConfiguration.class, ShiroAutoConfiguration.class})
 @ConditionalOnProperty(name = ShiroBizProperties.PREFIX, matchIfMissing = true)
@@ -35,7 +44,10 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	private ApplicationContext applicationContext;
 
 	/**
-	 * Realm 执行监听：实现该接口可监听认证失败和成功的状态，从而做业务系统自己的事情，比如记录日志
+	 * Collects all {@link AuthorizingRealmListener} beans from the application context to listen for
+	 * authentication success and failure events, enabling business-specific actions such as logging.
+	 *
+	 * @return a list of realm listeners
 	 */
 	@Bean("realmListeners")
 	@ConditionalOnMissingBean(name = "realmListeners")
@@ -56,12 +68,24 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	}
 
 
+	/**
+	 * Registers a {@link PermissionResolver} that supports both bit-based and wildcard permission resolution.
+	 *
+	 * @return the permission resolver
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public PermissionResolver permissionResolver() {
 		return new BitAndWildPermissionResolver();
 	}
 
+	/**
+	 * Registers a {@link RolePermissionResolver} configured with default role-permission mappings
+	 * from the {@link ShiroBizProperties}.
+	 *
+	 * @param bizProperties the Shiro business properties
+	 * @return the role permission resolver
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public RolePermissionResolver rolePermissionResolver(ShiroBizProperties bizProperties) {
@@ -70,12 +94,22 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 		return permissionResolver;
 	}
 
+	/**
+	 * Registers a default {@link CredentialsMatcher} that allows all credentials (no validation).
+	 *
+	 * @return the credentials matcher
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public CredentialsMatcher credentialsMatcher() {
 		return new AllowAllCredentialsMatcher();
 	}
 
+	/**
+	 * Registers the default authentication failure handler.
+	 *
+	 * @return the default authentication failure handler
+	 */
 	@Bean
 	protected DefaultAuthenticationFailureHandler defaultAuthenticationFailureHandler() {
 		return new DefaultAuthenticationFailureHandler();

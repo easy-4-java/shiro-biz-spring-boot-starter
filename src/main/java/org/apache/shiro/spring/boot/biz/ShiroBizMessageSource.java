@@ -19,8 +19,11 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 /**
- * TODO
+ * A {@link ResourceBundleMessageSource} that loads Shiro business-layer messages from the
+ * {@code org.apache.shiro.spring.boot.biz.messages} resource bundle.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 public class ShiroBizMessageSource extends ResourceBundleMessageSource {
 	
@@ -34,6 +37,11 @@ public class ShiroBizMessageSource extends ResourceBundleMessageSource {
 	// ~ Methods
 	// ========================================================================================================
 
+	/**
+	 * Creates a new {@link MessageSourceAccessor} backed by a fresh {@link ShiroBizMessageSource} instance.
+	 *
+	 * @return a message source accessor for Shiro business messages
+	 */
 	public static MessageSourceAccessor getAccessor() {
 		return new MessageSourceAccessor(new ShiroBizMessageSource());
 	}

@@ -41,10 +41,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
 /**
- * <p>Shiro内置了很多默认的拦截器，比如身份验证、授权等相关的。默认拦截器可以参考org.apache.shiro.web.filter.mgt.DefaultFilter中的枚举拦截器：&nbsp;&nbsp;</p>
- * <p>自定义Filter通过@Bean注解后，被Spring Boot自动注册到了容器的Filter chain中，这样导致的结果是，所有URL都会被自定义Filter过滤，而不是Shiro中配置的一部分URL。</p>
- * https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-disable-registration-of-a-servlet-or-filter
- * http://www.jianshu.com/p/bf79fdab9c19
+ * Auto-configuration for Shiro web filters in a servlet environment, including logout, session management,
+ * header/referrer validation, and authentication failure counting filters.
+ * <p>Shiro ships many built-in filters for authentication and authorization (see
+ * {@code org.apache.shiro.web.filter.mgt.DefaultFilter}). Custom filters registered via {@code @Bean} are
+ * automatically added to the Spring Boot servlet filter chain, which means they apply to all URLs rather than
+ * only the paths configured in Shiro. This configuration addresses that by registering filters as
+ * {@link FilterRegistrationBean} instances with {@code enabled=false}, so they participate only in the
+ * Shiro filter chain.</p>
+ * @see <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-disable-registration-of-a-servlet-or-filter">
+ *      Disable Registration of a Servlet or Filter</a>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @Configuration
 @AutoConfigureBefore( name = {
@@ -58,8 +67,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Autowired
 	private ShiroBizProperties bizProperties;
 	
-	/*
-	 * 系统登录注销过滤器；默认：org.apache.shiro.spring.boot.cas.filter.CasLogoutFilter
+	/**
+	 * Registers the system logout filter. Delegates to {@link BizLogoutFilter} and configures
+	 * logout listeners, POST-only logout enforcement, and the post-logout redirect URL.
+	 *
+	 * @param logoutListenerProvider provider for optional logout listeners
+	 * @return the logout filter registration bean
 	 */
 	@Bean("logout")
 	@ConditionalOnMissingBean(name = "logout")
@@ -78,6 +91,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
+	/**
+	 * Registers the HTML entity escaping filter that sanitizes request parameters.
+	 *
+	 * @return the escape HTML filter registration bean
+	 */
 	@Bean("escapeHtml4")
 	@ConditionalOnMissingBean(name = "escapeHtml4")
 	public FilterRegistrationBean<HttpServletRequestEscapeHtml4Filter> escapeHtml4Filter(){
@@ -87,6 +105,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
+	/**
+	 * Registers the HTTP header filter for enforcing access-control headers.
+	 *
+	 * @param properties the header configuration properties
+	 * @return the header filter registration bean
+	 */
 	@Bean("headers")
 	@ConditionalOnMissingBean(name = "headers")
 	public FilterRegistrationBean<HttpServletRequestHeaderFilter> headerFilter(ShiroHttpServletHeaderProperties properties){
@@ -98,6 +122,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
+	/**
+	 * Registers the HTTP method filter that restricts allowed request methods.
+	 *
+	 * @param properties the header configuration properties containing allowed methods
+	 * @return the method filter registration bean
+	 */
 	@Bean("methods")
 	@ConditionalOnMissingBean(name = "methods")
 	public FilterRegistrationBean<HttpServletRequestMethodFilter> methodFilter(ShiroHttpServletHeaderProperties properties){
@@ -112,6 +142,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
+	/**
+	 * Registers the HTTP referrer filter for validating request referrer headers.
+	 *
+	 * @param properties the referrer configuration properties
+	 * @return the referrer filter registration bean
+	 */
 	@Bean("referrers")
 	@ConditionalOnMissingBean(name = "referrers")
 	public FilterRegistrationBean<HttpServletRequestReferrerFilter> referrerFilter(ShiroHttpServletReferrerProperties properties){
@@ -123,8 +159,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
-	/*
-	 * 默认的Session在线状态过滤器 ：解决回话被强制登出问题
+	/**
+	 * Registers the session online status filter to handle forced session logout scenarios.
+	 *
+	 * @param sessionManager the Shiro session manager
+	 * @return the session status filter registration bean
 	 */
 	@Bean("sessionStatus")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
@@ -142,8 +181,13 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
-	/*
-	 * 默认的Session控制实现，解决唯一登录问题
+	/**
+	 * Registers the session deque filter to enforce unique session login, kicking out earlier sessions
+	 * when the maximum concurrent session limit is reached.
+	 *
+	 * @param cacheManager the cache manager for session tracking
+	 * @param sessionManager the Shiro session manager
+	 * @return the session deque filter registration bean
 	 */
 	@Bean("sessionDeque")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
@@ -175,8 +219,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
-	/*
-	 * 默认的Session过期过滤器 ：解决Ajax请求期间会话过期异常处理
+	/**
+	 * Registers the session expired filter to gracefully handle session expiration during AJAX requests.
+	 *
+	 * @return the session expired filter registration bean
 	 */
 	@Bean("sessionExpired")
 	@ConditionalOnMissingBean(name = "sessionExpired")
@@ -189,8 +235,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	    return registration;
 	}
 	
-	/*
-	 * 默认的认证失败次数计数器实现
+	/**
+	 * Registers the authentication failure counter. Uses request-based counting for stateless sessions
+	 * and session-based counting otherwise.
+	 *
+	 * @return the authentication failure counter
 	 */
 	@Bean
 	@ConditionalOnMissingBean
@@ -201,6 +250,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 		return new AuthenticatingFailureSessionCounter();
 	}
 	
+	/**
+	 * Creates and configures the {@link ShiroFilterFactoryBean} with the security manager,
+	 * login/success/unauthorized URLs, and the filter chain definition map.
+	 *
+	 * @return the configured Shiro filter factory bean
+	 */
 	@Bean
     @ConditionalOnMissingBean
     @Override
@@ -225,6 +280,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
         
     }
 
+    /**
+     * Registers the main Shiro filter with the servlet container at the lowest precedence.
+     *
+     * @return the Shiro filter registration bean
+     * @throws Exception if the filter factory bean cannot be created
+     */
     @Bean(name = "filterShiroFilterRegistrationBean")
     @ConditionalOnMissingBean
     protected FilterRegistrationBean<AbstractShiroFilter> filterShiroFilterRegistrationBean() throws Exception {

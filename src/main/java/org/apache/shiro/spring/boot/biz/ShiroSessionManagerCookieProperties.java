@@ -19,21 +19,27 @@ import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the Shiro session manager cookie, controlling the session ID cookie
+ * name, max age, domain, path, and security flag.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShiroSessionManagerCookieProperties.PREFIX)
 public class ShiroSessionManagerCookieProperties {
 
 	public static final String PREFIX = "shiro.sessionManager.cookie";
 	
-    // Session Cookie info
-
+    /** The session cookie name, default is {@link ShiroHttpSession#DEFAULT_SESSION_ID_NAME}. */
     protected String name = ShiroHttpSession.DEFAULT_SESSION_ID_NAME;
-
+    /** The session cookie max age in seconds, default is {@link SimpleCookie#DEFAULT_MAX_AGE}. */
     protected int maxAge = SimpleCookie.DEFAULT_MAX_AGE;
-
+    /** The session cookie domain. */
     protected String domain;
-
+    /** The session cookie path. */
     protected String path;
-
+    /** Whether the session cookie requires HTTPS, default is false. */
     protected boolean secure = false;
 
 	public String getName() {

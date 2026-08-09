@@ -29,12 +29,26 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.ObjectUtils;
+/**
+ * A {@link ShiroFilterProxyFactoryBean} that discovers all {@link FilterRegistrationBean} instances
+ * from the application context and adds their {@link jakarta.servlet.Filter} instances to the Shiro
+ * filter chain. This ensures that filters registered as Spring beans but intended for Shiro are
+ * properly included in the Shiro filter chain rather than the servlet container filter chain.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @SuppressWarnings("rawtypes")
 public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean implements ApplicationContextAware  {
 	
 	private ApplicationContext applicationContext;
 	
-	//过滤器链：实现对路径规则的拦截过滤
+	/**
+	 * Collects all {@link FilterRegistrationBean} instances from the application context whose filters
+	 * are {@link AdviceFilter} subclasses, and merges them with the filters from the parent factory bean.
+	 *
+	 * @return the combined map of filter name to filter instance
+	 */
 	@Override
 	public Map<String, Filter> getFilters() {
 		

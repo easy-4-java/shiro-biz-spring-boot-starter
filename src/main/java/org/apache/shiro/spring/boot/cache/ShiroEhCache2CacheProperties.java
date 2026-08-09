@@ -18,8 +18,10 @@ package org.apache.shiro.spring.boot.cache;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * EhCache2 配置
+ * Configuration properties for the Shiro EhCache 2.x cache manager.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroEhCache2CacheProperties.PREFIX)
 public class ShiroEhCache2CacheProperties {

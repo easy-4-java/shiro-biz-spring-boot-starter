@@ -3,8 +3,12 @@ import org.apache.shiro.biz.web.servlet.AuthenticatingHttpServlet;
 
 
 /**
- * RSA登录工具
+ * An HTTP servlet for RSA key-pair-based login authentication. Generates an RSA key pair,
+ * stores the private key in the HTTP session, and returns the public key to the client
+ * for encrypting credentials.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 

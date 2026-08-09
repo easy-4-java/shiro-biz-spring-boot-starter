@@ -17,6 +17,12 @@ package org.apache.shiro.spring.boot.cache;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the Shiro cache, specifying the cache implementation type.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShiroCacheProperties.PREFIX)
 public class ShiroCacheProperties {
 
@@ -27,7 +33,8 @@ public class ShiroCacheProperties {
 	 */
 	
 	/**
-	 * 缓存类型：memory、spring、ehcache、hazelcast、j2cache、redis、redisson
+	 * The cache implementation type. Supported values: memory, spring, ehcache, ehcache3,
+	 * hazelcast, j2cache, redis, redisson. Default is "memory".
 	 */
 	private String type = "memory";
 

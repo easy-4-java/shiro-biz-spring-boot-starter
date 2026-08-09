@@ -19,8 +19,11 @@ import org.apache.shiro.biz.web.filter.HttpServletHeaderProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO
+ * Configuration properties for Shiro HTTP servlet header filtering, including CORS-related
+ * headers such as access-control allow methods, origins, and headers.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroHttpServletHeaderProperties.PREFIX)
 public class ShiroHttpServletHeaderProperties extends HttpServletHeaderProperties {

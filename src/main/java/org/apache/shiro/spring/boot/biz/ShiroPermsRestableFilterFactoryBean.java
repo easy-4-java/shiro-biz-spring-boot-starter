@@ -18,9 +18,13 @@ package org.apache.shiro.spring.boot.biz;
 import java.util.Map;
 
 /**
- * 动态权限
- * https://www.cnblogs.com/007sx/p/7381475.html
+ * A {@link ShiroBizFilterFactoryBean} extension that supports dynamic permission-based filter chain
+ * definitions. This allows runtime modification of the Shiro filter chain based on permission
+ * configurations stored externally (e.g., in a database).
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ * @see <a href="https://www.cnblogs.com/007sx/p/7381475.html">Dynamic Permission Reference</a>
  */
 public class ShiroPermsRestableFilterFactoryBean extends ShiroBizFilterFactoryBean  {
 	
@@ -74,6 +78,12 @@ public class ShiroPermsRestableFilterFactoryBean extends ShiroBizFilterFactoryBe
         setFilterChainDefinitionMap(section);
     }*/
 	
+	/**
+	 * Sets the filter chain definition map, allowing dynamic permission definitions to be merged
+	 * with the static filter chain configuration.
+	 *
+	 * @param filterChainDefinitionMap the map of URL patterns to filter chain definitions
+	 */
 	@Override
 	public void setFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
 		

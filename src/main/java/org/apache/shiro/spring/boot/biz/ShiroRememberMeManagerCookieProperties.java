@@ -18,6 +18,13 @@ package org.apache.shiro.spring.boot.biz;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the Shiro RememberMe manager cookie, controlling the cookie name,
+ * max age, domain, path, security flag, and encryption secret key.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShiroRememberMeManagerCookieProperties.PREFIX)
 public class ShiroRememberMeManagerCookieProperties {
 
@@ -27,22 +34,21 @@ public class ShiroRememberMeManagerCookieProperties {
      * The number of seconds in one week (= 60 * 60 * 24 * 7).
      */
 	private static final Integer ONE_WEEK = 60 * 60 * 24 * 7;
-	// 默认记住我cookie加密秘钥
+	/** Default encryption secret key for the RememberMe cookie. */
 	private static final String DEFAULT_REMEMBERME_SECRETKEY = "1a2b5c8e6c9e5g2s";
 	
-    // RememberMe Cookie info
-
+    /** The RememberMe cookie name. */
     private String name = CookieRememberMeManager.DEFAULT_REMEMBER_ME_COOKIE_NAME;
-
+    /** The RememberMe cookie max age in seconds, default is one week. */
     private int maxAge = ONE_WEEK;
-
+    /** The RememberMe cookie domain. */
     private String domain;
-
+    /** The RememberMe cookie path. */
     private String path;
-
+    /** Whether the RememberMe cookie requires HTTPS, default is false. */
     private boolean secure = false;
-    
-    private String secretKey = DEFAULT_REMEMBERME_SECRETKEY;// rememberMe秘钥
+    /** The encryption secret key for the RememberMe cookie. */
+    private String secretKey = DEFAULT_REMEMBERME_SECRETKEY;
 
 	public String getName() {
 		return name;

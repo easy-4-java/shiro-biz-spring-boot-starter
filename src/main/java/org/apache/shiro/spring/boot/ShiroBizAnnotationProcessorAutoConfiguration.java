@@ -28,6 +28,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+/**
+ * Auto-configuration for the Shiro annotation processor, customizing the
+ * {@link DefaultAdvisorAutoProxyCreator} to resolve conflicts between Shiro and Spring AOP.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @AutoConfigureBefore({ShiroAnnotationProcessorAutoConfiguration.class, ShiroAnnotationProcessorConfiguration.class })
 @Configuration
 @ConditionalOnProperty(prefix = ShiroBizAnnotationProperties.PREFIX, value = "enabled", havingValue = "true")
@@ -37,12 +44,18 @@ public class ShiroBizAnnotationProcessorAutoConfiguration extends AbstractShiroA
 	@Autowired
 	private ShiroBizAnnotationProperties properties;
 
+	/**
+	 * Registers the {@link DefaultAdvisorAutoProxyCreator} bean, configured from the bound
+	 * {@link ShiroBizAnnotationProperties}, to resolve conflicts between Shiro and Spring AOP.
+	 *
+	 * @return the configured auto-proxy creator
+	 */
 	@Bean
     @DependsOn("lifecycleBeanPostProcessor")
     @Override
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 
-		// 解决Shiro与Spring Aop 冲突
+		// Resolve the conflict between Shiro and Spring AOP
 		DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = super.defaultAdvisorAutoProxyCreator();
 		advisorAutoProxyCreator.setProxyTargetClass(properties.isProxyTargetClass());
         advisorAutoProxyCreator.setExposeProxy(properties.isExposeProxy());

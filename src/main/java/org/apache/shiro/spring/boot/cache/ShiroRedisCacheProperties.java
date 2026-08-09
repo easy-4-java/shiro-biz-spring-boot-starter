@@ -18,8 +18,10 @@ package org.apache.shiro.spring.boot.cache;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Redis 配置
+ * Configuration properties for the Shiro Redis cache manager.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroRedisCacheProperties.PREFIX)
 public class ShiroRedisCacheProperties {

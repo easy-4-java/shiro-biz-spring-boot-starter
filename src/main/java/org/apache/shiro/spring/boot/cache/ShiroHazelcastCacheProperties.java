@@ -20,8 +20,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import com.hazelcast.config.Config;
 
 /**
- * Hazelcast 配置
+ * Configuration properties for the Shiro Hazelcast cache manager.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroHazelcastCacheProperties.PREFIX)
 public class ShiroHazelcastCacheProperties extends Config {

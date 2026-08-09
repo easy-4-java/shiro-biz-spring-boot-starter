@@ -21,6 +21,13 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.biz.authc.token.CaptchaAuthenticationToken;
 import org.apache.shiro.biz.web.filter.authc.captcha.CaptchaResolver;
 
+/**
+ * A no-op {@link CaptchaResolver} that always returns {@code false}, effectively disabling
+ * captcha validation.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class NullCaptchaResolver implements CaptchaResolver {
 
 	@Override

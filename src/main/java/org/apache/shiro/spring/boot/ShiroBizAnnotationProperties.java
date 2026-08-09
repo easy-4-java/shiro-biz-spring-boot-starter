@@ -20,7 +20,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.lang.Nullable;
 
 /**
- * 扩展shiro主机自动注入，解决Spring Aop冲突
+ * Configuration properties for Shiro annotation processing, extending the default Shiro annotation auto-configuration
+ * to resolve conflicts between Shiro and Spring AOP proxy mechanisms.
+ * <p>This allows fine-grained control over proxy behavior, including target class proxying,
+ * optimization, opacity, proxy exposure, and freezing of the advisor configuration.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroBizAnnotationProperties.PREFIX)
 public class ShiroBizAnnotationProperties {

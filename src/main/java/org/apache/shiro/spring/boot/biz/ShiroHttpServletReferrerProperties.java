@@ -19,8 +19,11 @@ import org.apache.shiro.biz.web.filter.HttpServletReferrerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO
+ * Configuration properties for Shiro HTTP servlet referrer filtering, controlling which referrer
+ * headers are accepted or rejected by the referrer validation filter.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShiroHttpServletReferrerProperties.PREFIX)
 public class ShiroHttpServletReferrerProperties extends HttpServletReferrerProperties {

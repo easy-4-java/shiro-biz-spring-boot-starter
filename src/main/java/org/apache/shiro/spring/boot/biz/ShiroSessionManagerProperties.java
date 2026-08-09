@@ -17,15 +17,23 @@ package org.apache.shiro.spring.boot.biz;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the Shiro session manager, controlling session ID cookie usage,
+ * URL rewriting, and automatic deletion of invalid sessions.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShiroSessionManagerProperties.PREFIX)
 public class ShiroSessionManagerProperties {
 
 	public static final String PREFIX = "shiro.sessionManager";
 	
+    /** Whether the session ID cookie is enabled, default is true. */
     private boolean sessionIdCookieEnabled = true;
-    
+    /** Whether session ID URL rewriting is enabled, default is true. */
     private boolean sessionIdUrlRewritingEnabled = true;
-    
+    /** Whether to automatically delete invalid sessions, default is true. */
     protected boolean deleteInvalidSessions = true;
     
 	public boolean isSessionIdCookieEnabled() {

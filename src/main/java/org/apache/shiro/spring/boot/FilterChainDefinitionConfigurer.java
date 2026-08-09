@@ -18,12 +18,20 @@ package org.apache.shiro.spring.boot;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 
 /**
- * TODO
+ * Callback interface that allows beans to contribute Shiro filter-chain path definitions to the
+ * default {@link DefaultShiroFilterChainDefinition}.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 public interface FilterChainDefinitionConfigurer {
 
+	/**
+	 * Adds path definitions to the given chain definition.
+	 *
+	 * @param chainDefinition the default Shiro filter chain definition to augment
+	 */
 	default void configurePathDefinition(DefaultShiroFilterChainDefinition chainDefinition) {
 	}
-	
+
 }

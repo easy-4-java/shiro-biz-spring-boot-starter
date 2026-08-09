@@ -18,6 +18,13 @@ import org.springframework.context.annotation.Configuration;
 
 import com.github.streamone.shiro.cache.RedissonShiroCacheManager;
 
+/**
+ * Auto-configuration for Shiro Redisson cache manager. Activates when Redisson is on the classpath
+ * and the {@code shiro.cache.type} property is set to "redisson".
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @AutoConfigureAfter(AbstractCachingConfiguration.class)
 @AutoConfigureBefore(ShiroWebAutoConfiguration.class)
@@ -26,12 +33,25 @@ import com.github.streamone.shiro.cache.RedissonShiroCacheManager;
 @EnableConfigurationProperties({ ShiroRedissonCacheProperties.class })
 public class ShiroRedissonCacheConfiguration {
 
+	/**
+	 * Creates a default {@link Codec} for Redisson cache serialization.
+	 *
+	 * @return the string codec
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	protected Codec codec() {
 		return new StringCodec();
 	}
 	
+	/**
+	 * Creates a Shiro {@link CacheManager} backed by Redisson.
+	 *
+	 * @param properties the Redisson cache configuration properties
+	 * @param redisson the Redisson client
+	 * @param codec the optional codec for serialization
+	 * @return the configured Shiro cache manager
+	 */
 	@Bean
 	public CacheManager shiroCacheManager(ShiroRedissonCacheProperties properties,
 			RedissonClient redisson, @Autowired(required = false) Codec codec) {

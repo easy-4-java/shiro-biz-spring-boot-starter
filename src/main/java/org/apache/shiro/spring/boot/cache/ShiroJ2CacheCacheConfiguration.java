@@ -29,6 +29,13 @@ import org.springframework.context.annotation.Configuration;
 
 import net.oschina.j2cache.CacheChannel;
 
+/**
+ * Auto-configuration for Shiro J2Cache cache manager. Activates when J2Cache is on the classpath
+ * and the {@code shiro.cache.type} property is set to "j2cache".
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @AutoConfigureAfter(AbstractCachingConfiguration.class)
 @AutoConfigureBefore(ShiroWebAutoConfiguration.class)
@@ -36,6 +43,12 @@ import net.oschina.j2cache.CacheChannel;
 @ConditionalOnProperty(prefix = ShiroCacheProperties.PREFIX, value = "type", havingValue = "j2cache")
 public class ShiroJ2CacheCacheConfiguration {
 
+	/**
+	 * Creates a Shiro {@link CacheManager} backed by J2Cache.
+	 *
+	 * @param channel the J2Cache channel
+	 * @return the configured Shiro cache manager
+	 */
 	@Bean
 	@ConditionalOnBean(CacheChannel.class)
 	public CacheManager shiroCacheManager(CacheChannel channel) {

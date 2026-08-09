@@ -13,6 +13,13 @@ import org.springframework.cache.annotation.AbstractCachingConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Auto-configuration for Shiro Redis cache manager. Activates when the Shiro Redis client is on the classpath
+ * and the {@code shiro.cache.type} property is set to "redis".
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @AutoConfigureAfter(AbstractCachingConfiguration.class)
 @AutoConfigureBefore(ShiroWebAutoConfiguration.class)
@@ -21,6 +28,13 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({ ShiroRedisCacheProperties.class })
 public class ShiroRedisCacheConfiguration {
 	
+	/**
+	 * Creates a Shiro {@link CacheManager} backed by Redis.
+	 *
+	 * @param properties the Redis cache configuration properties
+	 * @param redisManager the Redis manager
+	 * @return the configured Shiro cache manager
+	 */
 	@Bean
 	public CacheManager shiroCacheManager(ShiroRedisCacheProperties properties,
 			IRedisManager redisManager) {

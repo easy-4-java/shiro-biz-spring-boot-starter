@@ -43,6 +43,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Auto-configuration for Shiro web-layer beans in a servlet environment, including the security manager,
+ * session manager, authenticator, subject factory, and filter chain definition.
+ * <p>This configuration extends {@link AbstractShiroWebConfiguration} and is applied after the web MVC
+ * and metrics auto-configurations to ensure all required dependencies are available.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @AutoConfigureBefore({ ShiroWebAutoConfiguration.class, ShiroAnnotationProcessorConfiguration.class })
 @AutoConfigureAfter({ MetricsAutoConfiguration.class, CompositeMeterRegistryAutoConfiguration.class, ShiroWebMvcAutoConfiguration.class })
@@ -58,6 +67,11 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Autowired(required = false)
 	private SessionValidationScheduler sessionValidationScheduler;
 
+	/**
+	 * Collects all {@link AuthenticationListener} beans from the application context.
+	 *
+	 * @return a list of authentication listeners
+	 */
 	protected List<AuthenticationListener> authenticationListeners() {
 		List<AuthenticationListener> authenticationListeners = Lists.newLinkedList();
 		Map<String, AuthenticationListener> beansOfType = getApplicationContext().getBeansOfType(AuthenticationListener.class);
@@ -127,6 +141,11 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 		return sessionStorageEvaluator;
 	}
 
+	/**
+	 * Collects all {@link SessionListener} beans from the application context and adds a default session listener.
+	 *
+	 * @return a list of session listeners
+	 */
 	protected List<SessionListener> sessionListeners() {
 		List<SessionListener> sessionListeners = Lists.newLinkedList();
 		Map<String, SessionListener> beansOfType = getApplicationContext().getBeansOfType(SessionListener.class);
@@ -202,7 +221,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	}
 
 	/**
-	 * 责任链定义 ：定义Shiro的逻辑处理责任链
+	 * Defines the Shiro filter chain definition, applying path definitions from properties and
+	 * any registered {@link FilterChainDefinitionConfigurer} beans.
+	 *
+	 * @return the Shiro filter chain definition
 	 */
 	@Bean
 	@ConditionalOnMissingBean

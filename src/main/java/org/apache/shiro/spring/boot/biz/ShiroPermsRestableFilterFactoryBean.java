@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 动态权限
  * https://www.cnblogs.com/007sx/p/7381475.html
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ShiroPermsRestableFilterFactoryBean extends ShiroBizFilterFactoryBean  {
 	

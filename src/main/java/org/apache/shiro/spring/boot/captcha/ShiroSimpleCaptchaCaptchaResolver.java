@@ -29,7 +29,7 @@ import nl.captcha.Captcha;
 
 /**
  * 验证SimpleCaptcha生成的验证码
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ShiroSimpleCaptchaCaptchaResolver implements CaptchaResolver {
 

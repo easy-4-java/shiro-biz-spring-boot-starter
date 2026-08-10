@@ -20,7 +20,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @ConfigurationProperties(ShiroHttpServletReferrerProperties.PREFIX)
 public class ShiroHttpServletReferrerProperties extends HttpServletReferrerProperties {

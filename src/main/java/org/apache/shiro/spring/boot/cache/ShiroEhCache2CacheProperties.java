@@ -19,7 +19,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * EhCache2 配置
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @ConfigurationProperties(ShiroEhCache2CacheProperties.PREFIX)
 public class ShiroEhCache2CacheProperties {

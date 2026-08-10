@@ -28,7 +28,7 @@ import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
 /**
  * 验证JCaptcha生成的验证码
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ShiroJCaptchaCaptchaResolver implements CaptchaResolver {
 

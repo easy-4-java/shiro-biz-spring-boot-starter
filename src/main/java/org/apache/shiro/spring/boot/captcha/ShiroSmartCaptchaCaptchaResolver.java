@@ -29,7 +29,7 @@ import ml.miron.captcha.util.CaptchaServletUtil;
 
 /**
  * 验证SmartCaptcha生成的验证码
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ShiroSmartCaptchaCaptchaResolver implements CaptchaResolver {
 

@@ -14,7 +14,7 @@ import freemarker.template.TemplateModelException;
  * A FreeMarker template method that checks whether captcha is enabled in the Shiro configuration.
  * Can be used in FreeMarker templates to conditionally render captcha-related UI elements.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class CaptchaEnabled implements TemplateMethodModelEx {

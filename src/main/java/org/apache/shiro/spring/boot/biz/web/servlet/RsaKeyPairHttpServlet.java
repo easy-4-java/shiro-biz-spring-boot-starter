@@ -7,7 +7,7 @@ import org.apache.shiro.biz.web.servlet.AuthenticatingHttpServlet;
  * stores the private key in the HTTP session, and returns the public key to the client
  * for encrypting credentials.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {

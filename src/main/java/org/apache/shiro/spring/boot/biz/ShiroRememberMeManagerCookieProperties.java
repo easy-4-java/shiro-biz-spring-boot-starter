@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the Shiro RememberMe manager cookie, controlling the cookie name,
  * max age, domain, path, security flag, and encryption secret key.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShiroRememberMeManagerCookieProperties.PREFIX)

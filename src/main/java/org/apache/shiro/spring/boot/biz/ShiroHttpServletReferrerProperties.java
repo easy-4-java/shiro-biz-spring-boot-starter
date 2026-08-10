@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for Shiro HTTP servlet referrer filtering, controlling which referrer
  * headers are accepted or rejected by the referrer validation filter.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShiroHttpServletReferrerProperties.PREFIX)

@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for Shiro HTTP servlet header filtering, including CORS-related
  * headers such as access-control allow methods, origins, and headers.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShiroHttpServletHeaderProperties.PREFIX)

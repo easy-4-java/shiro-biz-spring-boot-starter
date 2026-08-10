@@ -22,7 +22,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
  * A {@link ResourceBundleMessageSource} that loads Shiro business-layer messages from the
  * {@code org.apache.shiro.spring.boot.biz.messages} resource bundle.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class ShiroBizMessageSource extends ResourceBundleMessageSource {

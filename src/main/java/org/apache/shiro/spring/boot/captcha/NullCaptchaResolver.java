@@ -25,7 +25,7 @@ import org.apache.shiro.biz.web.filter.authc.captcha.CaptchaResolver;
  * A no-op {@link CaptchaResolver} that always returns {@code false}, effectively disabling
  * captcha validation.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class NullCaptchaResolver implements CaptchaResolver {

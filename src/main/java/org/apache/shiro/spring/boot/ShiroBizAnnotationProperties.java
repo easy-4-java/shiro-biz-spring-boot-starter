@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * <p>This allows fine-grained control over proxy behavior, including target class proxying,
  * optimization, opacity, proxy exposure, and freezing of the advisor configuration.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShiroBizAnnotationProperties.PREFIX)

@@ -32,7 +32,7 @@ import java.util.Map.Entry;
  * <p>This configuration is applied before the web and core Shiro auto-configurations to ensure
  * that foundational beans are available for injection.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

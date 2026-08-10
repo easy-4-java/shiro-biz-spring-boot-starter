@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * Auto-configuration for Shiro EhCache 2.x cache manager. Activates when EhCache 2.x is on the classpath
  * and the {@code shiro.cache.type} property is set to "ehcache".
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

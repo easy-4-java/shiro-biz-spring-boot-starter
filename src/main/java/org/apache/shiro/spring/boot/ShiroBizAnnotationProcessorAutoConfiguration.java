@@ -32,7 +32,7 @@ import org.springframework.context.annotation.DependsOn;
  * Auto-configuration for the Shiro annotation processor, customizing the
  * {@link DefaultAdvisorAutoProxyCreator} to resolve conflicts between Shiro and Spring AOP.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @AutoConfigureBefore({ShiroAnnotationProcessorAutoConfiguration.class, ShiroAnnotationProcessorConfiguration.class })

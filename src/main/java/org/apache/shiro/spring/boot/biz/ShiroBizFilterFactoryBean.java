@@ -36,7 +36,7 @@ import org.springframework.util.ObjectUtils;
  * filter chain. This ensures that filters registered as Spring beans but intended for Shiro are
  * properly included in the Shiro filter chain rather than the servlet container filter chain.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @SuppressWarnings("rawtypes")

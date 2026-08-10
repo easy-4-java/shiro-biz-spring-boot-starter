@@ -24,7 +24,7 @@ import org.apache.shiro.biz.web.filter.authc.AbstractAuthenticatingFilter;
  * An authenticating filter that processes ticket-based authentication (e.g., CAS or SSO tickets).
  * Delegates the actual ticket validation logic to subclasses.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class TicketAuthenticatingFilter extends AbstractAuthenticatingFilter{

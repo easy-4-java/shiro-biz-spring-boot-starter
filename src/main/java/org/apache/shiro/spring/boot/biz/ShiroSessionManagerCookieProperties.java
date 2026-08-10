@@ -23,7 +23,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the Shiro session manager cookie, controlling the session ID cookie
  * name, max age, domain, path, and security flag.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShiroSessionManagerCookieProperties.PREFIX)

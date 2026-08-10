@@ -22,7 +22,7 @@ import com.github.streamone.shiro.cache.RedissonShiroCacheManager;
  * Auto-configuration for Shiro Redisson cache manager. Activates when Redisson is on the classpath
  * and the {@code shiro.cache.type} property is set to "redisson".
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

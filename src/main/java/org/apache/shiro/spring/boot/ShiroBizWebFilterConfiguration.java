@@ -51,7 +51,7 @@ import org.springframework.core.Ordered;
  * @see <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-disable-registration-of-a-servlet-or-filter">
  *      Disable Registration of a Servlet or Filter</a>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

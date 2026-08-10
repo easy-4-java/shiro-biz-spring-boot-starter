@@ -33,7 +33,7 @@ import net.oschina.j2cache.CacheChannel;
  * Auto-configuration for Shiro J2Cache cache manager. Activates when J2Cache is on the classpath
  * and the {@code shiro.cache.type} property is set to "j2cache".
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

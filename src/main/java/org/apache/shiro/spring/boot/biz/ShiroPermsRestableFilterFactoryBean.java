@@ -22,7 +22,7 @@ import java.util.Map;
  * definitions. This allows runtime modification of the Shiro filter chain based on permission
  * configurations stored externally (e.g., in a database).
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  * @see <a href="https://www.cnblogs.com/007sx/p/7381475.html">Dynamic Permission Reference</a>
  */

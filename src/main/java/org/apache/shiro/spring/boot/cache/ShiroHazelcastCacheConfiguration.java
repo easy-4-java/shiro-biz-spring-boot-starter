@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * Auto-configuration for Shiro Hazelcast cache manager. Activates when Hazelcast is on the classpath
  * and the {@code shiro.cache.type} property is set to "spring".
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

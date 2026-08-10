@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * Auto-configuration for Shiro Spring cache manager. Activates when the {@code shiro.cache.type}
  * property is set to "spring". Delegates to the Spring {@link org.springframework.cache.CacheManager}.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

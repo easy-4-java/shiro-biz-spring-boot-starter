@@ -19,7 +19,7 @@ package org.apache.shiro.spring.boot.utils;
  * Extension of {@link org.apache.shiro.util.StringUtils} that provides additional string
  * tokenization utilities for Shiro configuration path parsing.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class StringUtils extends org.apache.shiro.util.StringUtils{

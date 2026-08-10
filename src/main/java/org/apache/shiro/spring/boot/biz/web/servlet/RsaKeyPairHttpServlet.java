@@ -4,7 +4,7 @@ import org.apache.shiro.biz.web.servlet.AuthenticatingHttpServlet;
 
 /**
  * RSA登录工具
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 

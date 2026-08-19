@@ -12,11 +12,11 @@
     </parent>
 
     <groupId>io.github.easy4j</groupId>
-    <artifactId>shiro-biz-spring-boot-starter</artifactId>
+    <artifactId>shiro-extension-spring-boot-starter</artifactId>
     <version>4.1.x.20260630-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Spring Boot Starter For Shiro Biz</description>
+    <description>Spring Boot Starter For Shiro Extension</description>
     <url>https://github.com/easy-4-java/${project.artifactId}</url>
 
     <!-- 开源协议采用 Apache 2.0 协议 -->
@@ -67,7 +67,7 @@
         <guava.version>33.2.1-jre</guava.version>
         <j2cache.version>2.8.5-release</j2cache.version>
         <javax.websocket-api.version>1.1.1</javax.websocket-api.version>
-        <shiro-biz.version>3.0.x.20260630-SNAPSHOT</shiro-biz.version>
+        <shiro-extension.version>3.0.x.20260630-SNAPSHOT</shiro-extension.version>
         <shiro-ehcache.version>${shiro.version}</shiro-ehcache.version>
         <shiro-ehcache3.version>1.0.0</shiro-ehcache3.version>
         <shiro-hazelcast.version>${shiro.version}</shiro-hazelcast.version>
@@ -244,11 +244,11 @@
             </exclusions>
         </dependency>
 
-        <!-- Source: https://github.com/easy-4-java/shiro-biz — easy4j shiro-biz -->
+        <!-- Source: https://github.com/easy-4-java/shiro-extension — easy4j shiro-extension -->
         <dependency>
             <groupId>io.github.easy4j</groupId>
-            <artifactId>shiro-biz</artifactId>
-            <version>${shiro-biz.version}</version>
+            <artifactId>shiro-extension-spring</artifactId>
+            <version>${shiro-extension.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-ehcache -->

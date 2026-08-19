@@ -213,6 +213,10 @@ public class ShiroBizProperties {
 	 */
 	private boolean userNativeSessionManager = false;
 	
+	/**
+	 * Constructs a new shiro biz properties instance.
+	 *
+	 */
 	public ShiroBizProperties() {
 
 		for (String ingored : DEFAULT_IGNORED) {

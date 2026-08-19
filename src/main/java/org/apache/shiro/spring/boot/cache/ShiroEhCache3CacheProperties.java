@@ -26,6 +26,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(ShiroEhCache3CacheProperties.PREFIX)
 public class ShiroEhCache3CacheProperties {
 
+	/**
+	 * Returns the cache manager config file.
+	 *
+	 * @return the cache manager config file
+	 */
 	public static final String PREFIX = "shiro.cache.ehcache3";
 	
     /**

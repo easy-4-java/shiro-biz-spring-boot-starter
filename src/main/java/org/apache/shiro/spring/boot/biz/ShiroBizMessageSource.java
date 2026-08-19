@@ -30,6 +30,10 @@ public class ShiroBizMessageSource extends ResourceBundleMessageSource {
 	// ~ Constructors
 	// ===================================================================================================
 
+	/**
+	 * Constructs a new shiro biz message source instance.
+	 *
+	 */
 	public ShiroBizMessageSource() {
 		setBasename("org.apache.shiro.spring.boot.biz.messages");
 	}

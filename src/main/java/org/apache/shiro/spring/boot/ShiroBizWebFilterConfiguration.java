@@ -58,6 +58,12 @@ import org.springframework.core.Ordered;
 @AutoConfigureBefore( name = {
 	"org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration" // shiro-spring-boot-web-starter
 })
+/**
+ * <p>Configuration properties.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 @ConditionalOnWebApplication
 @ConditionalOnProperty(prefix = ShiroBizProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties({ ShiroBizProperties.class, ShiroHttpServletHeaderProperties.class, ShiroHttpServletReferrerProperties.class })
@@ -118,6 +124,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the header configuration properties
 	 * @return the header filter registration bean
+	/**
+	 * header Filter.
+	 *
+	 * @param properties the properties
+	 * @return the result
+	 */
 	@Bean("headers")
 	@ConditionalOnMissingBean(name = "headers")
 	public FilterRegistrationBean headerFilter(ShiroHttpServletHeaderProperties properties){
@@ -134,6 +146,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the header configuration properties containing allowed methods
 	 * @return the method filter registration bean
+	/**
+	 * method Filter.
+	 *
+	 * @param properties the properties
+	 * @return the result
+	 */
 	@Bean("methods")
 	@ConditionalOnMissingBean(name = "methods")
 	public FilterRegistrationBean methodFilter(ShiroHttpServletHeaderProperties properties){
@@ -156,6 +174,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the referrer configuration properties
 	 * @return the referrer filter registration bean
+	/**
+	 * referrer Filter.
+	 *
+	 * @param properties the properties
+	 * @return the result
+	 */
 	@Bean("referrers")
 	@ConditionalOnMissingBean(name = "referrers")
 	public FilterRegistrationBean referrerFilter(ShiroHttpServletReferrerProperties properties){

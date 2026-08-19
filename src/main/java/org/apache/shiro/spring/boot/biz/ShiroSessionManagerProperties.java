@@ -27,6 +27,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(ShiroSessionManagerProperties.PREFIX)
 public class ShiroSessionManagerProperties {
 
+	/**
+	 * Returns the session id cookie enabled.
+	 *
+	 * @return the session id cookie enabled
+	 */
 	public static final String PREFIX = "shiro.sessionManager";
 	
     /** Whether the session ID cookie is enabled, default is true. */

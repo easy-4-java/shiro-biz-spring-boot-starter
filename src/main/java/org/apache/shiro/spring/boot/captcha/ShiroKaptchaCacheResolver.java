@@ -38,6 +38,11 @@ public class ShiroKaptchaCacheResolver implements CaptchaResolver {
 
 	private final Cache<String, Object> captchaCache;
 
+	/**
+	 * Constructs a new shiro kaptcha cache resolver instance.
+	 *
+	 * @param captchaCache the captcha cache
+	 */
 	public ShiroKaptchaCacheResolver(Cache<String, Object> captchaCache) {
 		this.captchaCache = captchaCache;
 	}
@@ -67,6 +72,13 @@ public class ShiroKaptchaCacheResolver implements CaptchaResolver {
 	 * @param token the captcha authentication token
 	 * @return true if the captcha is valid
 	 * @throws AuthenticationException if the captcha is incorrect or expired
+	/**
+	 * Determines whether valid captcha.
+	 *
+	 * @param request the request
+	 * @param token the token
+	 * @return the result
+	 */
 	@Override
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {

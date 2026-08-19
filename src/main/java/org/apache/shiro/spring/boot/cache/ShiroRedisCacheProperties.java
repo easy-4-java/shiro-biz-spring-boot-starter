@@ -38,6 +38,11 @@ public class ShiroRedisCacheProperties {
 	public static final String DEFAULT_CACHE_KEY_PREFIX = "shiro:cache:";
 	private String keyPrefix = DEFAULT_CACHE_KEY_PREFIX;
 
+	/**
+	 * Returns the expire.
+	 *
+	 * @return the expire
+	 */
 	public static final String DEFAULT_PRINCIPAL_ID_FIELD_NAME = "authCacheKey or id";
 	private String principalIdFieldName = DEFAULT_PRINCIPAL_ID_FIELD_NAME;
 

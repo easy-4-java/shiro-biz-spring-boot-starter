@@ -35,6 +35,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for {@link ShiroEndpoint}.
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 @Configuration
 @ConditionalOnClass({Subject.class, HealthIndicator.class, EndpointAutoConfiguration.class})

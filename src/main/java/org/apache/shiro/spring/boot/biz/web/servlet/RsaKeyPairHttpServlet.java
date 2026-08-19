@@ -15,6 +15,12 @@ public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 	private static final String PRIVATE_KEY_ATTRIBUTE_NAME = "privateKey";
 
 	/*****生成密钥对，返回公钥、私钥放session*****
+	/**
+	 * generate Key.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	public RSAPublicKey generateKey(HttpServletRequest request) {
 		KeyPair keyPair = RSAUtils.generateKeyPair();
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -25,6 +31,11 @@ public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 	}***/
 
 	/*******从session中清除私钥************
+	/**
+	 * remove Private Key.
+	 *
+	 * @param request the request
+	 */
 	public void removePrivateKey(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(PRIVATE_KEY_ATTRIBUTE_NAME);
@@ -32,6 +43,13 @@ public class RsaKeyPairHttpServlet extends AuthenticatingHttpServlet {
 */
 	
 	/*********解密字符串****************
+	/**
+	 * decrypt Parameter.
+	 *
+	 * @param parameter the parameter
+	 * @param request the request
+	 * @return the result
+	 */
 	public String decryptParameter(String parameter, HttpServletRequest request) {
 		if (parameter != null) {
 			HttpSession session = request.getSession();

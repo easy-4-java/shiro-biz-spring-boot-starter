@@ -35,6 +35,7 @@ import com.google.common.collect.Maps;
 /**
  * {@link Endpoint} to expose shiro info.
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 @Endpoint(id = "shiro")
 public class ShiroEndpoint {
@@ -42,6 +43,11 @@ public class ShiroEndpoint {
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 	private final SessionDAO sessionDAO;
 
+	/**
+	 * Constructs a new shiro endpoint instance.
+	 *
+	 * @param sessionDAO the session d a o
+	 */
 	public ShiroEndpoint( SessionDAO sessionDAO) {
 		this.sessionDAO = sessionDAO;
 	}
@@ -160,10 +166,23 @@ public class ShiroEndpoint {
 		/** 已强制退出:1:是，0:否 */
 		private String forceLogout;
 		
+		/**
+		 * Constructs a new session descriptor instance.
+		 *
+		 */
 		public SessionDescriptor() {
 			super();
 		}
 
+		/**
+		 * Constructs a new session descriptor instance.
+		 *
+		 * @param sessionId the session id
+		 * @param host the host
+		 * @param startTimestamp the start timestamp
+		 * @param lastAccessTime the last access time
+		 * @param timeout the timeout
+		 */
 		public SessionDescriptor(Serializable sessionId, String host, String startTimestamp, String lastAccessTime,
 				long timeout) {
 			this.sessionId = sessionId;
@@ -173,6 +192,11 @@ public class ShiroEndpoint {
 			this.timeout = timeout;
 		}
 
+		/**
+		 * Constructs a new session descriptor instance.
+		 *
+		 * @param session the session
+		 */
 		public SessionDescriptor(Session session) {
 			this.sessionId = session.getId();
 			this.host = session.getHost();

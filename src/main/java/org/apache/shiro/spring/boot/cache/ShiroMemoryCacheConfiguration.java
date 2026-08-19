@@ -29,6 +29,10 @@ public class ShiroMemoryCacheConfiguration {
 	 * @return the configured Shiro cache manager
 	 */
 	@Bean
+    /**
+     * <p>Shiro cache manager.</p>
+     * @return the shiro cache manager
+     */
 	public CacheManager shiroCacheManager() {
 		return new MemoryConstrainedCacheManager();
 	}

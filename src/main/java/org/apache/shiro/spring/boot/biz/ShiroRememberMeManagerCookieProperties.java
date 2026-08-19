@@ -50,50 +50,98 @@ public class ShiroRememberMeManagerCookieProperties {
     /** The encryption secret key for the RememberMe cookie. */
     private String secretKey = DEFAULT_REMEMBERME_SECRETKEY;
 
+    /**
+     * <p>Returns the name.</p>
+     * @return the get name
+     */
 	public String getName() {
 		return name;
 	}
 
+    /**
+     * <p>Sets the name.</p>
+     * @param name
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+    /**
+     * <p>Returns the max age.</p>
+     * @return the get max age
+     */
 	public int getMaxAge() {
 		return maxAge;
 	}
 
+    /**
+     * <p>Sets the max age.</p>
+     * @param maxAge
+     */
 	public void setMaxAge(int maxAge) {
 		this.maxAge = maxAge;
 	}
 
+    /**
+     * <p>Returns the domain.</p>
+     * @return the get domain
+     */
 	public String getDomain() {
 		return domain;
 	}
 
+    /**
+     * <p>Sets the domain.</p>
+     * @param domain
+     */
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}
 
+    /**
+     * <p>Returns the path.</p>
+     * @return the get path
+     */
 	public String getPath() {
 		return path;
 	}
 
+    /**
+     * <p>Sets the path.</p>
+     * @param path
+     */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
+    /**
+     * <p>Checks if secure.</p>
+     * @return the is secure
+     */
 	public boolean isSecure() {
 		return secure;
 	}
 
+    /**
+     * <p>Sets the secure.</p>
+     * @param secure
+     */
 	public void setSecure(boolean secure) {
 		this.secure = secure;
 	}
 
+    /**
+     * <p>Returns the secret key.</p>
+     * @return the get secret key
+     */
 	public String getSecretKey() {
 		return secretKey;
 	}
 
+    /**
+     * <p>Sets the secret key.</p>
+     * @param secretKey
+     */
 	public void setSecretKey(String secretKey) {
 		this.secretKey = secretKey;
 	}

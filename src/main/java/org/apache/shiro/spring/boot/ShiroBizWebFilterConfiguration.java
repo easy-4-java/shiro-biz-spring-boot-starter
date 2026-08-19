@@ -75,6 +75,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("logout")
 	@ConditionalOnMissingBean(name = "logout")
+    /**
+     * <p>Logout filter.</p>
+     * @param logoutListenerProvider
+     * @return the logout filter
+     */
 	public FilterRegistrationBean logoutFilter(ObjectProvider<LogoutListener> logoutListenerProvider){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -97,6 +102,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("escapeHtml4")
 	@ConditionalOnMissingBean(name = "escapeHtml4")
+    /**
+     * <p>Escape html4 filter.</p>
+     * @return the escape html4 filter
+     */
 	public FilterRegistrationBean escapeHtml4Filter(){
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
 		registration.setFilter(new JakartaFilterAdapter(new HttpServletRequestEscapeHtml4Filter()));
@@ -112,6 +121,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("headers")
 	@ConditionalOnMissingBean(name = "headers")
+    /**
+     * <p>Header filter.</p>
+     * @param properties
+     * @return the header filter
+     */
 	public FilterRegistrationBean headerFilter(ShiroHttpServletHeaderProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -129,6 +143,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("methods")
 	@ConditionalOnMissingBean(name = "methods")
+    /**
+     * <p>Method filter.</p>
+     * @param properties
+     * @return the method filter
+     */
 	public FilterRegistrationBean methodFilter(ShiroHttpServletHeaderProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -152,6 +171,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("referrers")
 	@ConditionalOnMissingBean(name = "referrers")
+    /**
+     * <p>Referrer filter.</p>
+     * @param properties
+     * @return the referrer filter
+     */
 	public FilterRegistrationBean referrerFilter(ShiroHttpServletReferrerProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -170,6 +194,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Bean("sessionStatus")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
 	//@ConditionalOnMissingBean(name = "sessionStatus")
+    /**
+     * <p>Session online filter.</p>
+     * @param sessionManager
+     * @return the session online filter
+     */
 	public FilterRegistrationBean sessionOnlineFilter(SessionManager sessionManager){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -194,6 +223,12 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Bean("sessionDeque")
 	@ConditionalOnBean({CacheManager.class, SessionManager.class})
 	//@ConditionalOnMissingBean(name = "sessionDeque")
+    /**
+     * <p>Session deque filter.</p>
+     * @param cacheManager
+     * @param sessionManager
+     * @return the session deque filter
+     */
 	public FilterRegistrationBean sessionDequeFilter(CacheManager cacheManager, SessionManager sessionManager){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -201,6 +236,11 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 		HttpServletSessionDequeFilter sessionDequeFilter = new HttpServletSessionDequeFilter() {
 
 			@Override
+    /**
+     * <p>Returns the session deque cache key.</p>
+     * @param principal
+     * @return the get session deque cache key
+     */
 			protected String getSessionDequeCacheKey(Object principal) {
 				ShiroPrincipal sp = (ShiroPrincipal) principal;
 				return sp.getUserid();
@@ -228,6 +268,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean("sessionExpired")
 	@ConditionalOnMissingBean(name = "sessionExpired")
+    /**
+     * <p>Session expired filter.</p>
+     * @return the session expired filter
+     */
 	public FilterRegistrationBean sessionExpiredFilter(){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -245,6 +289,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Authc failure counter.</p>
+     * @return the authc failure counter
+     */
 	public AuthenticatingFailureCounter authcFailureCounter() {
 		if (bizProperties.isSessionStateless()) {
 			return new AuthenticatingFailureRequestCounter();
@@ -261,6 +309,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	@Bean
     @ConditionalOnMissingBean
     @Override
+    /**
+     * <p>Shiro filter factory bean.</p>
+     * @return the shiro filter factory bean
+     */
     protected ShiroFilterFactoryBean shiroFilterFactoryBean() {
 
 		ShiroFilterProxyFactoryBean filterFactoryBean = new ShiroBizFilterFactoryBean();
@@ -290,6 +342,10 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
      */
     @Bean(name = "filterShiroFilterRegistrationBean")
     @ConditionalOnMissingBean
+    /**
+     * <p>Filter shiro filter registration bean.</p>
+     * @return the filter shiro filter registration bean
+     */
     protected FilterRegistrationBean filterShiroFilterRegistrationBean() throws Exception {
 
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean<>();

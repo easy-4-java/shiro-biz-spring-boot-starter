@@ -37,6 +37,12 @@ public class ShiroSmartCaptchaCaptchaResolver implements CaptchaResolver {
 	private static final String CAPTCHA_ATTRIBUTE = "captcha";
 
 	@Override
+    /**
+     * <p>Valid captcha.</p>
+     * @param request
+     * @param token
+     * @return the valid captcha
+     */
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {
 		// 验证码无效

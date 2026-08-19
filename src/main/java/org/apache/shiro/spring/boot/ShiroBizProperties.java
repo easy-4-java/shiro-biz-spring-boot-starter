@@ -221,18 +221,34 @@ public class ShiroBizProperties {
 		
 	}
 
+    /**
+     * <p>Returns the active sessions cache name.</p>
+     * @return the get active sessions cache name
+     */
 	public String getActiveSessionsCacheName() {
 		return activeSessionsCacheName;
 	}
 
+    /**
+     * <p>Sets the active sessions cache name.</p>
+     * @param activeSessionsCacheName
+     */
 	public void setActiveSessionsCacheName(String activeSessionsCacheName) {
 		this.activeSessionsCacheName = activeSessionsCacheName;
 	}
 
+    /**
+     * <p>Returns the authorization cache name.</p>
+     * @return the get authorization cache name
+     */
 	public String getAuthorizationCacheName() {
 		return authorizationCacheName;
 	}
 
+    /**
+     * <p>Sets the authorization cache name.</p>
+     * @param authorizationCacheName
+     */
 	public void setAuthorizationCacheName(String authorizationCacheName) {
 		this.authorizationCacheName = authorizationCacheName;
 	}
@@ -340,6 +356,10 @@ public class ShiroBizProperties {
 		this.authenticationCacheName = authenticationCacheName;
 	}
 
+    /**
+     * <p>Checks if caching enabled.</p>
+     * @return the is caching enabled
+     */
 	public boolean isCachingEnabled() {
 		return cachingEnabled;
 	}
@@ -352,66 +372,130 @@ public class ShiroBizProperties {
 		this.cachingEnabled = cachingEnabled;
 	}
 	
+    /**
+     * <p>Checks if captcha enabled.</p>
+     * @return the is captcha enabled
+     */
 	public boolean isCaptchaEnabled() {
 		return captchaEnabled;
 	}
 
+    /**
+     * <p>Sets the captcha enabled.</p>
+     * @param captchaEnabled
+     */
 	public void setCaptchaEnabled(boolean captchaEnabled) {
 		this.captchaEnabled = captchaEnabled;
 	}
 
+    /**
+     * <p>Returns the captcha param name.</p>
+     * @return the get captcha param name
+     */
 	public String getCaptchaParamName() {
 		return captchaParamName;
 	}
 
+    /**
+     * <p>Sets the captcha param name.</p>
+     * @param captchaParamName
+     */
 	public void setCaptchaParamName(String captchaParamName) {
 		this.captchaParamName = captchaParamName;
 	}
 	
+    /**
+     * <p>Returns the credentials retry times limit.</p>
+     * @return the get credentials retry times limit
+     */
 	public int getCredentialsRetryTimesLimit() {
 		return credentialsRetryTimesLimit;
 	}
 
+    /**
+     * <p>Sets the credentials retry times limit.</p>
+     * @param credentialsRetryTimesLimit
+     */
 	public void setCredentialsRetryTimesLimit(int credentialsRetryTimesLimit) {
 		this.credentialsRetryTimesLimit = credentialsRetryTimesLimit;
 	}
 
+    /**
+     * <p>Returns the credentials retry cache name.</p>
+     * @return the get credentials retry cache name
+     */
 	public String getCredentialsRetryCacheName() {
 		return credentialsRetryCacheName;
 	}
 
+    /**
+     * <p>Sets the credentials retry cache name.</p>
+     * @param credentialsRetryCacheName
+     */
 	public void setCredentialsRetryCacheName(String credentialsRetryCacheName) {
 		this.credentialsRetryCacheName = credentialsRetryCacheName;
 	}
 
+    /**
+     * <p>Returns the default role permissions.</p>
+     * @return the get default role permissions
+     */
 	public Map<String, String> getDefaultRolePermissions() {
 		return defaultRolePermissions;
 	}
 
+    /**
+     * <p>Sets the default role permissions.</p>
+     * @param defaultRolePermissions
+     */
 	public void setDefaultRolePermissions(Map<String, String> defaultRolePermissions) {
 		this.defaultRolePermissions = defaultRolePermissions;
 	}
 	
+    /**
+     * <p>Checks if enabled.</p>
+     * @return the is enabled
+     */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+    /**
+     * <p>Sets the enabled.</p>
+     * @param enabled
+     */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 	
+    /**
+     * <p>Returns the failure url.</p>
+     * @return the get failure url
+     */
 	public String getFailureUrl() {
 		return failureUrl;
 	}
 
+    /**
+     * <p>Sets the failure url.</p>
+     * @param failureUrl
+     */
 	public void setFailureUrl(String failureUrl) {
 		this.failureUrl = failureUrl;
 	}
 	
+    /**
+     * <p>Returns the filter chain definition map.</p>
+     * @return the get filter chain definition map
+     */
 	public Map<String, String> getFilterChainDefinitionMap() {
 		return filterChainDefinitionMap;
 	}
 
+    /**
+     * <p>Sets the filter chain definition map.</p>
+     * @param filterChainDefinitionMap
+     */
 	public void setFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
 		this.filterChainDefinitionMap = filterChainDefinitionMap;
 	}
@@ -440,42 +524,82 @@ public class ShiroBizProperties {
         this.loginUrl = loginUrl;
     }
 	
+    /**
+     * <p>Checks if post only logout.</p>
+     * @return the is post only logout
+     */
 	public boolean isPostOnlyLogout() {
 		return postOnlyLogout;
 	}
 
+    /**
+     * <p>Sets the post only logout.</p>
+     * @param postOnlyLogout
+     */
 	public void setPostOnlyLogout(boolean postOnlyLogout) {
 		this.postOnlyLogout = postOnlyLogout;
 	}
 
+    /**
+     * <p>Returns the redirect url.</p>
+     * @return the get redirect url
+     */
 	public String getRedirectUrl() {
 		return redirectUrl;
 	}
 
+    /**
+     * <p>Sets the redirect url.</p>
+     * @param redirectUrl
+     */
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
 	}
 
+    /**
+     * <p>Returns the retry times key attribute.</p>
+     * @return the get retry times key attribute
+     */
 	public String getRetryTimesKeyAttribute() {
 		return retryTimesKeyAttribute;
 	}
 
+    /**
+     * <p>Sets the retry times key attribute.</p>
+     * @param retryTimesKeyAttribute
+     */
 	public void setRetryTimesKeyAttribute(String retryTimesKeyAttribute) {
 		this.retryTimesKeyAttribute = retryTimesKeyAttribute;
 	}
 
+    /**
+     * <p>Returns the retry times when access denied.</p>
+     * @return the get retry times when access denied
+     */
 	public int getRetryTimesWhenAccessDenied() {
 		return retryTimesWhenAccessDenied;
 	}
 
+    /**
+     * <p>Sets the retry times when access denied.</p>
+     * @param retryTimesWhenAccessDenied
+     */
 	public void setRetryTimesWhenAccessDenied(int retryTimesWhenAccessDenied) {
 		this.retryTimesWhenAccessDenied = retryTimesWhenAccessDenied;
 	}
 
+    /**
+     * <p>Checks if session caching enabled.</p>
+     * @return the is session caching enabled
+     */
 	public boolean isSessionCachingEnabled() {
 		return isCachingEnabled() && sessionCachingEnabled;
 	}
 
+    /**
+     * <p>Sets the session caching enabled.</p>
+     * @param sessionCachingEnabled
+     */
 	public void setSessionCachingEnabled(boolean sessionCachingEnabled) {
 		this.sessionCachingEnabled = sessionCachingEnabled;
 		if (sessionCachingEnabled) {
@@ -505,74 +629,146 @@ public class ShiroBizProperties {
 		this.sessionCreationEnabled = sessionCreationEnabled;
 	}
 	
+    /**
+     * <p>Returns the session deque cache name.</p>
+     * @return the get session deque cache name
+     */
 	public String getSessionDequeCacheName() {
 		return sessionDequeCacheName;
 	}
 
+    /**
+     * <p>Sets the session deque cache name.</p>
+     * @param sessionDequeCacheName
+     */
 	public void setSessionDequeCacheName(String sessionDequeCacheName) {
 		this.sessionDequeCacheName = sessionDequeCacheName;
 	}
 	
+    /**
+     * <p>Checks if static security manager enabled.</p>
+     * @return the is static security manager enabled
+     */
 	public boolean isStaticSecurityManagerEnabled() {
 		return staticSecurityManagerEnabled;
 	}
 
+    /**
+     * <p>Sets the static security manager enabled.</p>
+     * @param staticSecurityManagerEnabled
+     */
 	public void setStaticSecurityManagerEnabled(boolean staticSecurityManagerEnabled) {
 		this.staticSecurityManagerEnabled = staticSecurityManagerEnabled;
 	}
 
+    /**
+     * <p>Checks if kickout first.</p>
+     * @return the is kickout first
+     */
 	public boolean isKickoutFirst() {
 		return kickoutFirst;
 	}
 
+    /**
+     * <p>Sets the kickout first.</p>
+     * @param kickoutFirst
+     */
 	public void setKickoutFirst(boolean kickoutFirst) {
 		this.kickoutFirst = kickoutFirst;
 	}
 
+    /**
+     * <p>Returns the session maximum kickout.</p>
+     * @return the get session maximum kickout
+     */
 	public int getSessionMaximumKickout() {
 		return sessionMaximumKickout;
 	}
 
+    /**
+     * <p>Sets the session maximum kickout.</p>
+     * @param sessionMaximumKickout
+     */
 	public void setSessionMaximumKickout(int sessionMaximumKickout) {
 		this.sessionMaximumKickout = sessionMaximumKickout;
 	}
 
+    /**
+     * <p>Checks if session storage enabled.</p>
+     * @return the is session storage enabled
+     */
 	public boolean isSessionStorageEnabled() {
 		return sessionStorageEnabled;
 	}
 
+    /**
+     * <p>Sets the session storage enabled.</p>
+     * @param sessionStorageEnabled
+     */
 	public void setSessionStorageEnabled(boolean sessionStorageEnabled) {
 		this.sessionStorageEnabled = sessionStorageEnabled;
 	}
 	
+    /**
+     * <p>Checks if session stateless.</p>
+     * @return the is session stateless
+     */
 	public boolean isSessionStateless() {
 		return sessionStateless;
 	}
 
+    /**
+     * <p>Sets the session stateless.</p>
+     * @param sessionStateless
+     */
 	public void setSessionStateless(boolean sessionStateless) {
 		this.sessionStateless = sessionStateless;
 	}
 
+    /**
+     * <p>Returns the session timeout.</p>
+     * @return the get session timeout
+     */
 	public long getSessionTimeout() {
 		return sessionTimeout;
 	}
 
+    /**
+     * <p>Sets the session timeout.</p>
+     * @param sessionTimeout
+     */
 	public void setSessionTimeout(long sessionTimeout) {
 		this.sessionTimeout = sessionTimeout;
 	}
 
+    /**
+     * <p>Returns the session validation interval.</p>
+     * @return the get session validation interval
+     */
 	public long getSessionValidationInterval() {
 		return sessionValidationInterval;
 	}
 
+    /**
+     * <p>Sets the session validation interval.</p>
+     * @param sessionValidationInterval
+     */
 	public void setSessionValidationInterval(long sessionValidationInterval) {
 		this.sessionValidationInterval = sessionValidationInterval;
 	}
 
+    /**
+     * <p>Checks if session validation scheduler enabled.</p>
+     * @return the is session validation scheduler enabled
+     */
 	public boolean isSessionValidationSchedulerEnabled() {
 		return sessionValidationSchedulerEnabled;
 	}
 
+    /**
+     * <p>Sets the session validation scheduler enabled.</p>
+     * @param sessionValidationSchedulerEnabled
+     */
 	public void setSessionValidationSchedulerEnabled(boolean sessionValidationSchedulerEnabled) {
 		this.sessionValidationSchedulerEnabled = sessionValidationSchedulerEnabled;
 	}
@@ -640,18 +836,34 @@ public class ShiroBizProperties {
         this.unauthorizedUrl = unauthorizedUrl;
     }
 
+    /**
+     * <p>Checks if unique sessin.</p>
+     * @return the is unique sessin
+     */
 	public boolean isUniqueSessin() {
 		return uniqueSessin;
 	}
 
+    /**
+     * <p>Sets the unique sessin.</p>
+     * @param uniqueSessin
+     */
 	public void setUniqueSessin(boolean uniqueSessin) {
 		this.uniqueSessin = uniqueSessin;
 	}
 
+    /**
+     * <p>Checks if user native session manager.</p>
+     * @return the is user native session manager
+     */
 	public boolean isUserNativeSessionManager() {
 		return userNativeSessionManager;
 	}
 
+    /**
+     * <p>Sets the user native session manager.</p>
+     * @param userNativeSessionManager
+     */
 	public void setUserNativeSessionManager(boolean userNativeSessionManager) {
 		this.userNativeSessionManager = userNativeSessionManager;
 	}

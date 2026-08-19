@@ -37,12 +37,6 @@ import com.google.common.collect.Maps;
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Endpoint(id = "shiro")
-/**
- * <p>ShiroEndpoint implementation.</p>
- *
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 public class ShiroEndpoint {
 	
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
@@ -53,6 +47,10 @@ public class ShiroEndpoint {
 	}
 
 	@ReadOperation
+    /**
+     * <p>Shiro sessions.</p>
+     * @return the shiro sessions
+     */
 	public ApplicationShiroSessions shiroSessions() {
 		Map<Serializable, SessionDescriptor> shiroSessions = Maps.newHashMap();
 		Collection<Session> sessions = sessionDAO.getActiveSessions();
@@ -81,6 +79,11 @@ public class ShiroEndpoint {
 	}
 
 	@ReadOperation
+    /**
+     * <p>Returns the session.</p>
+     * @param sessionId
+     * @return the get session
+     */
 	public SessionDescriptor getSession(@Selector String sessionId) {
 		Session session = this.sessionDAO.readSession(sessionId);
 		if (session == null) {
@@ -90,6 +93,11 @@ public class ShiroEndpoint {
 	}
 
 	@WriteOperation
+    /**
+     * <p>Force logout.</p>
+     * @param sessionId
+     * @return the force logout
+     */
 	public boolean forceLogout(@Selector String sessionId) {
 		try {  
             Session session = this.sessionDAO.readSession(sessionId);  
@@ -118,6 +126,10 @@ public class ShiroEndpoint {
 			this.sessions = shiroSessions;
 		}
 
+    /**
+     * <p>Returns the sessions.</p>
+     * @return the get sessions
+     */
 		public Map<Serializable, SessionDescriptor> getSessions() {
 			return this.sessions;
 		}
@@ -176,74 +188,146 @@ public class ShiroEndpoint {
     		}
 		}
 
+    /**
+     * <p>Returns the session id.</p>
+     * @return the get session id
+     */
 		public Serializable getSessionId() {
 			return sessionId;
 		}
 
+    /**
+     * <p>Sets the session id.</p>
+     * @param sessionId
+     */
 		public void setSessionId(Serializable sessionId) {
 			this.sessionId = sessionId;
 		}
 
+    /**
+     * <p>Returns the host.</p>
+     * @return the get host
+     */
 		public String getHost() {
 			return host;
 		}
 
+    /**
+     * <p>Sets the host.</p>
+     * @param host
+     */
 		public void setHost(String host) {
 			this.host = host;
 		}
 
+    /**
+     * <p>Returns the start timestamp.</p>
+     * @return the get start timestamp
+     */
 		public String getStartTimestamp() {
 			return startTimestamp;
 		}
 
+    /**
+     * <p>Sets the start timestamp.</p>
+     * @param startTimestamp
+     */
 		public void setStartTimestamp(String startTimestamp) {
 			this.startTimestamp = startTimestamp;
 		}
 
+    /**
+     * <p>Returns the last access time.</p>
+     * @return the get last access time
+     */
 		public String getLastAccessTime() {
 			return lastAccessTime;
 		}
 
+    /**
+     * <p>Sets the last access time.</p>
+     * @param lastAccessTime
+     */
 		public void setLastAccessTime(String lastAccessTime) {
 			this.lastAccessTime = lastAccessTime;
 		}
 
+    /**
+     * <p>Returns the timeout.</p>
+     * @return the get timeout
+     */
 		public long getTimeout() {
 			return timeout;
 		}
 
+    /**
+     * <p>Sets the timeout.</p>
+     * @param timeout
+     */
 		public void setTimeout(long timeout) {
 			this.timeout = timeout;
 		}
 
+    /**
+     * <p>Returns the user agent.</p>
+     * @return the get user agent
+     */
 		public String getUserAgent() {
 			return userAgent;
 		}
 
+    /**
+     * <p>Sets the user agent.</p>
+     * @param userAgent
+     */
 		public void setUserAgent(String userAgent) {
 			this.userAgent = userAgent;
 		}
 		
+    /**
+     * <p>Returns the system host.</p>
+     * @return the get system host
+     */
 		public String getSystemHost() {
 			return systemHost;
 		}
 
+    /**
+     * <p>Sets the system host.</p>
+     * @param systemHost
+     */
 		public void setSystemHost(String systemHost) {
 			this.systemHost = systemHost;
 		}
 
+    /**
+     * <p>Returns the status.</p>
+     * @return the get status
+     */
 		public String getStatus() {
 			return status;
 		}
 
+    /**
+     * <p>Sets the status.</p>
+     * @param status
+     */
 		public void setStatus(String status) {
 			this.status = status;
 		}
 
+    /**
+     * <p>Returns the force logout.</p>
+     * @return the get force logout
+     */
 		public String getForceLogout() {
 			return forceLogout;
 		}
 
+    /**
+     * <p>Sets the force logout.</p>
+     * @param forceLogout
+     */
 		public void setForceLogout(String forceLogout) {
 			this.forceLogout = forceLogout;
 		}

@@ -53,6 +53,10 @@ public class ShiroBizAnnotationProcessorAutoConfiguration extends AbstractShiroA
 	@Bean
     @DependsOn("lifecycleBeanPostProcessor")
     @Override
+    /**
+     * <p>Default advisor auto proxy creator.</p>
+     * @return the default advisor auto proxy creator
+     */
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 
 		// Resolve the conflict between Shiro and Spring AOP

@@ -38,26 +38,50 @@ public class ShiroRedissonCacheProperties {
 
     private Map<String, CacheConfig> configMap = new ConcurrentHashMap<>();
 
+    /**
+     * <p>Checks if allow null values.</p>
+     * @return the is allow null values
+     */
 	public boolean isAllowNullValues() {
 		return allowNullValues;
 	}
 
+    /**
+     * <p>Sets the allow null values.</p>
+     * @param allowNullValues
+     */
 	public void setAllowNullValues(boolean allowNullValues) {
 		this.allowNullValues = allowNullValues;
 	}
 
+    /**
+     * <p>Returns the config location.</p>
+     * @return the get config location
+     */
 	public String getConfigLocation() {
 		return configLocation;
 	}
 
+    /**
+     * <p>Sets the config location.</p>
+     * @param configLocation
+     */
 	public void setConfigLocation(String configLocation) {
 		this.configLocation = configLocation;
 	}
 
+    /**
+     * <p>Returns the config map.</p>
+     * @return the get config map
+     */
 	public Map<String, CacheConfig> getConfigMap() {
 		return configMap;
 	}
 
+    /**
+     * <p>Sets the config map.</p>
+     * @param configMap
+     */
 	public void setConfigMap(Map<String, CacheConfig> configMap) {
 		this.configMap = configMap;
 	}

@@ -38,6 +38,12 @@ public class ShiroJCaptchaCaptchaResolver implements CaptchaResolver {
 	private static final String VALIDATE_METHOD_CLASS = "com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet";
 
 	@Override
+    /**
+     * <p>Valid captcha.</p>
+     * @param request
+     * @param token
+     * @return the valid captcha
+     */
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {
 

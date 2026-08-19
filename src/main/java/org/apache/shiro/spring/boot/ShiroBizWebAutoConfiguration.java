@@ -87,6 +87,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Authenticator.</p>
+     * @return the authenticator
+     */
 	protected Authenticator authenticator() {
 		ModularRealmAuthenticator authenticator = new DefaultModularRealmAuthenticator();
 		authenticator.setAuthenticationStrategy(authenticationStrategy());
@@ -97,12 +101,20 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Session factory.</p>
+     * @return the session factory
+     */
 	protected SessionFactory sessionFactory() {
 		return new SimpleOnlineSessionFactory();
 	}
 
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Session id generator.</p>
+     * @return the session id generator
+     */
 	protected SessionIdGenerator sessionIdGenerator() {
 		return new JavaUuidSessionIdGenerator();
 	}
@@ -110,6 +122,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Session d a o.</p>
+     * @return the session d a o
+     */
 	protected SessionDAO sessionDAO() {
 		// 缓存存在的时候使用外部Session管理器
 		if (useNativeSessionManager && bizProperties.isSessionCachingEnabled() && cacheManager != null) {
@@ -125,6 +141,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Subject d a o.</p>
+     * @return the subject d a o
+     */
 	protected SubjectDAO subjectDAO() {
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         subjectDAO.setSessionStorageEvaluator(sessionStorageEvaluator());
@@ -134,6 +154,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Session storage evaluator.</p>
+     * @return the session storage evaluator
+     */
 	protected SessionStorageEvaluator sessionStorageEvaluator() {
 		DefaultSessionStorageEvaluator sessionStorageEvaluator = new DefaultSessionStorageEvaluator();
 		// 无状态逻辑情况下不持久化session
@@ -163,6 +187,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Session manager.</p>
+     * @return the session manager
+     */
 	protected SessionManager sessionManager() {
 		SessionManager sessionManager = super.sessionManager();
 		if (sessionManager instanceof AbstractSessionManager) {
@@ -194,6 +222,11 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Security manager.</p>
+     * @param realms
+     * @return the security manager
+     */
 	protected SessionsSecurityManager securityManager(List<Realm> realms) {
 
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -216,6 +249,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Subject factory.</p>
+     * @return the subject factory
+     */
 	protected SubjectFactory subjectFactory() {
 		return new SessionCreationEnabledSubjectFactory(bizProperties.isSessionCreationEnabled());
 	}
@@ -229,6 +266,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	@Bean
 	@ConditionalOnMissingBean
 	@Override
+    /**
+     * <p>Shiro filter chain definition.</p>
+     * @return the shiro filter chain definition
+     */
 	protected ShiroFilterChainDefinition shiroFilterChainDefinition() {
 		DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
 		if (MapUtils.isNotEmpty(bizProperties.getFilterChainDefinitionMap())) {
@@ -251,6 +292,10 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	}
 
 	@Bean
+    /**
+     * <p>Default authentication failure handler.</p>
+     * @return the default authentication failure handler
+     */
 	protected DefaultAuthenticationFailureHandler defaultAuthenticationFailureHandler() {
 		return new DefaultAuthenticationFailureHandler();
 	}
@@ -286,18 +331,34 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	 * }
 	 */
 	@Override
+    /**
+     * <p>Sets the application context.</p>
+     * @param applicationContext
+     */
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 
+    /**
+     * <p>Returns the application context.</p>
+     * @return the get application context
+     */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}
 
+    /**
+     * <p>Returns the biz properties.</p>
+     * @return the get biz properties
+     */
 	public ShiroBizProperties getBizProperties() {
 		return bizProperties;
 	}
 
+    /**
+     * <p>Sets the biz properties.</p>
+     * @param bizProperties
+     */
 	public void setBizProperties(ShiroBizProperties bizProperties) {
 		this.bizProperties = bizProperties;
 	}

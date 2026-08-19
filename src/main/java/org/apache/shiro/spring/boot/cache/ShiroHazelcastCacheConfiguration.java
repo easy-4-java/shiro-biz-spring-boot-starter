@@ -34,6 +34,11 @@ public class ShiroHazelcastCacheConfiguration {
 	 * @return the configured Shiro cache manager
 	 */
 	@Bean
+    /**
+     * <p>Shiro cache manager.</p>
+     * @param config
+     * @return the shiro cache manager
+     */
 	public CacheManager shiroCacheManager(ShiroHazelcastCacheProperties config) {
 
 		HazelcastCacheManager cacheManager = new HazelcastCacheManager();

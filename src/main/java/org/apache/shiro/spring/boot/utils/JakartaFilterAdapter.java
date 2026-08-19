@@ -37,6 +37,10 @@ public class JakartaFilterAdapter implements Filter {
     }
 
     @Override
+    /**
+     * <p>Initializes the init.</p>
+     * @param filterConfig
+     */
     public void init(FilterConfig filterConfig) throws ServletException {
         try {
             Method initMethod = findMethod("init", new String[]{"javax.servlet.FilterConfig", "jakarta.servlet.FilterConfig"});
@@ -50,6 +54,12 @@ public class JakartaFilterAdapter implements Filter {
     }
 
     @Override
+    /**
+     * <p>Performs filter.</p>
+     * @param request
+     * @param response
+     * @param chain
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         try {
@@ -64,6 +74,9 @@ public class JakartaFilterAdapter implements Filter {
     }
 
     @Override
+    /**
+     * <p>Destroy.</p>
+     */
     public void destroy() {
         try {
             Method destroyMethod = delegate.getClass().getMethod("destroy");
@@ -138,6 +151,13 @@ public class JakartaFilterAdapter implements Filter {
         }
 
         @Override
+    /**
+     * <p>Invoke.</p>
+     * @param proxy
+     * @param method
+     * @param args
+     * @return the invoke
+     */
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             Method targetMethod = target.getClass().getMethod(method.getName(), method.getParameterTypes());
             return targetMethod.invoke(target, args);

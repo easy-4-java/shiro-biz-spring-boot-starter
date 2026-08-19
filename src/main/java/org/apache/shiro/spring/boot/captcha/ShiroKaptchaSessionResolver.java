@@ -37,6 +37,12 @@ public class ShiroKaptchaSessionResolver implements CaptchaResolver {
 	/** The captcha validity period in milliseconds, default is 60000 (60 seconds). */
 	private long captchaTimeout = ShiroBizProperties.DEFAULT_CAPTCHA_TIMEOUT;
 
+    /**
+     * <p>Initializes the init.</p>
+     * @param captchaStoreKey
+     * @param captchaDateStoreKey
+     * @param captchaTimeout
+     */
 	public void init(String captchaStoreKey, String captchaDateStoreKey, long captchaTimeout) {
 		if(StringUtils.isNoneEmpty(captchaStoreKey)) {
 			this.captchaStoreKey = captchaStoreKey;
@@ -58,6 +64,12 @@ public class ShiroKaptchaSessionResolver implements CaptchaResolver {
 	 * @throws AuthenticationException if the captcha is incorrect or expired
 	 */
 	@Override
+    /**
+     * <p>Valid captcha.</p>
+     * @param request
+     * @param token
+     * @return the valid captcha
+     */
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {
 		// 验证码无效
@@ -104,14 +116,26 @@ public class ShiroKaptchaSessionResolver implements CaptchaResolver {
 		session.setAttribute( getCaptchaDateStoreKey(), (capDate != null ? capDate : new Date()));
 	}
 
+    /**
+     * <p>Returns the captcha store key.</p>
+     * @return the get captcha store key
+     */
 	public String getCaptchaStoreKey() {
 		return captchaStoreKey;
 	}
 
+    /**
+     * <p>Returns the captcha date store key.</p>
+     * @return the get captcha date store key
+     */
 	public String getCaptchaDateStoreKey() {
 		return captchaDateStoreKey;
 	}
 
+    /**
+     * <p>Returns the captcha timeout.</p>
+     * @return the get captcha timeout
+     */
 	public long getCaptchaTimeout() {
 		return captchaTimeout;
 	}

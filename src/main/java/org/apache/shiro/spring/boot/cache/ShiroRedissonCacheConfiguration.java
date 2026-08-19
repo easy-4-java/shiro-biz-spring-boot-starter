@@ -40,6 +40,10 @@ public class ShiroRedissonCacheConfiguration {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Codec.</p>
+     * @return the codec
+     */
 	protected Codec codec() {
 		return new StringCodec();
 	}

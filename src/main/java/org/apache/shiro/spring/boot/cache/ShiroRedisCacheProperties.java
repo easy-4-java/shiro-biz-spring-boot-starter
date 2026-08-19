@@ -41,26 +41,50 @@ public class ShiroRedisCacheProperties {
 	public static final String DEFAULT_PRINCIPAL_ID_FIELD_NAME = "authCacheKey or id";
 	private String principalIdFieldName = DEFAULT_PRINCIPAL_ID_FIELD_NAME;
 
+    /**
+     * <p>Returns the expire.</p>
+     * @return the get expire
+     */
 	public int getExpire() {
 		return expire;
 	}
 
+    /**
+     * <p>Sets the expire.</p>
+     * @param expire
+     */
 	public void setExpire(int expire) {
 		this.expire = expire;
 	}
 
+    /**
+     * <p>Returns the key prefix.</p>
+     * @return the get key prefix
+     */
 	public String getKeyPrefix() {
 		return keyPrefix;
 	}
 
+    /**
+     * <p>Sets the key prefix.</p>
+     * @param keyPrefix
+     */
 	public void setKeyPrefix(String keyPrefix) {
 		this.keyPrefix = keyPrefix;
 	}
 
+    /**
+     * <p>Returns the principal id field name.</p>
+     * @return the get principal id field name
+     */
 	public String getPrincipalIdFieldName() {
 		return principalIdFieldName;
 	}
 
+    /**
+     * <p>Sets the principal id field name.</p>
+     * @param principalIdFieldName
+     */
 	public void setPrincipalIdFieldName(String principalIdFieldName) {
 		this.principalIdFieldName = principalIdFieldName;
 	}

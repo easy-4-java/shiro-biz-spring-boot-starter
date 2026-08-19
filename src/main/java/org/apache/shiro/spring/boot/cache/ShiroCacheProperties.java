@@ -38,10 +38,18 @@ public class ShiroCacheProperties {
 	 */
 	private String type = "memory";
 
+    /**
+     * <p>Returns the type.</p>
+     * @return the get type
+     */
 	public String getType() {
 		return type;
 	}
 
+    /**
+     * <p>Sets the type.</p>
+     * @param type
+     */
 	public void setType(String type) {
 		this.type = type;
 	}

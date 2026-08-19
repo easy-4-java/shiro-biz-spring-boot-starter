@@ -35,6 +35,10 @@ public class ShiroPermsRestableFilterFactoryBean extends ShiroBizFilterFactoryBe
      * 初始化设置过滤链
      *//*
     @Override
+    /**
+     * <p>Sets the filter chain definitions.</p>
+     * @param definitions
+     */
     public void setFilterChainDefinitions(String definitions) {
 //        String token =  manageUserService.getAdminToken(0);
 
@@ -85,6 +89,10 @@ public class ShiroPermsRestableFilterFactoryBean extends ShiroBizFilterFactoryBe
 	 * @param filterChainDefinitionMap the map of URL patterns to filter chain definitions
 	 */
 	@Override
+    /**
+     * <p>Sets the filter chain definition map.</p>
+     * @param filterChainDefinitionMap
+     */
 	public void setFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
 		
 		

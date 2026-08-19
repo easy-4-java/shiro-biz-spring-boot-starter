@@ -36,26 +36,50 @@ public class ShiroSessionManagerProperties {
     /** Whether to automatically delete invalid sessions, default is true. */
     protected boolean deleteInvalidSessions = true;
     
+    /**
+     * <p>Checks if session id cookie enabled.</p>
+     * @return the is session id cookie enabled
+     */
 	public boolean isSessionIdCookieEnabled() {
 		return sessionIdCookieEnabled;
 	}
 
+    /**
+     * <p>Sets the session id cookie enabled.</p>
+     * @param sessionIdCookieEnabled
+     */
 	public void setSessionIdCookieEnabled(boolean sessionIdCookieEnabled) {
 		this.sessionIdCookieEnabled = sessionIdCookieEnabled;
 	}
 
+    /**
+     * <p>Checks if session id url rewriting enabled.</p>
+     * @return the is session id url rewriting enabled
+     */
 	public boolean isSessionIdUrlRewritingEnabled() {
 		return sessionIdUrlRewritingEnabled;
 	}
 
+    /**
+     * <p>Sets the session id url rewriting enabled.</p>
+     * @param sessionIdUrlRewritingEnabled
+     */
 	public void setSessionIdUrlRewritingEnabled(boolean sessionIdUrlRewritingEnabled) {
 		this.sessionIdUrlRewritingEnabled = sessionIdUrlRewritingEnabled;
 	}
 
+    /**
+     * <p>Checks if delete invalid sessions.</p>
+     * @return the is delete invalid sessions
+     */
 	public boolean isDeleteInvalidSessions() {
 		return deleteInvalidSessions;
 	}
 
+    /**
+     * <p>Sets the delete invalid sessions.</p>
+     * @param deleteInvalidSessions
+     */
 	public void setDeleteInvalidSessions(boolean deleteInvalidSessions) {
 		this.deleteInvalidSessions = deleteInvalidSessions;
 	}

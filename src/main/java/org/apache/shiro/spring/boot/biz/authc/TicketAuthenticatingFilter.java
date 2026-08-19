@@ -30,6 +30,12 @@ import org.apache.shiro.biz.web.filter.authc.AbstractAuthenticatingFilter;
 public class TicketAuthenticatingFilter extends AbstractAuthenticatingFilter{
 	 
 	@Override
+    /**
+     * <p>On access denied.</p>
+     * @param request
+     * @param response
+     * @return the on access denied
+     */
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 		return false;
 	}

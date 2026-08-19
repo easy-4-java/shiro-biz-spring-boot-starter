@@ -51,6 +51,10 @@ public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean imple
 	 * @return the combined map of filter name to filter instance
 	 */
 	@Override
+    /**
+     * <p>Returns the filters.</p>
+     * @return the get filters
+     */
 	public Map<String, Filter> getFilters() {
 
 		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
@@ -78,10 +82,18 @@ public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean imple
 	}
 
 	@Override
+    /**
+     * <p>Sets the application context.</p>
+     * @param applicationContext
+     */
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 
+    /**
+     * <p>Returns the application context.</p>
+     * @return the get application context
+     */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}

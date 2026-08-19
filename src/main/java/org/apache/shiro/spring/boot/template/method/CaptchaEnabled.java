@@ -23,6 +23,11 @@ public class CaptchaEnabled implements TemplateMethodModelEx {
 	private ShiroKaptchaProperties properties;
 	
 	@SuppressWarnings("rawtypes")
+    /**
+     * <p>Exec.</p>
+     * @param arguments
+     * @return the exec
+     */
 	public Object exec(List arguments) throws TemplateModelException {
 		return new SimpleScalar(Boolean.toString(properties.isEnabled()));
 	}

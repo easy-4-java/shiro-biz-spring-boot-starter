@@ -34,16 +34,28 @@ public class ShiroSpringCacheConfiguration implements ApplicationContextAware {
 	 * @return the configured Shiro cache manager
 	 */
 	@Bean
+    /**
+     * <p>Shiro cache manager.</p>
+     * @return the shiro cache manager
+     */
 	public CacheManager shiroCacheManager() {
 		org.springframework.cache.CacheManager springCacheManager = getApplicationContext().getBean(org.springframework.cache.CacheManager.class);
 		return new SpringCacheManager(springCacheManager);
 	}
 
 	@Override
+    /**
+     * <p>Sets the application context.</p>
+     * @param applicationContext
+     */
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 
+    /**
+     * <p>Returns the application context.</p>
+     * @return the get application context
+     */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}

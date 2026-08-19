@@ -33,10 +33,18 @@ public class ShiroEhCache2CacheProperties {
      */
     private String cacheManagerConfigFile = "classpath:org/apache/shiro/cache/ehcache/ehcache.xml";
 
+    /**
+     * <p>Returns the cache manager config file.</p>
+     * @return the get cache manager config file
+     */
 	public String getCacheManagerConfigFile() {
 		return cacheManagerConfigFile;
 	}
 
+    /**
+     * <p>Sets the cache manager config file.</p>
+     * @param cacheManagerConfigFile
+     */
 	public void setCacheManagerConfigFile(String cacheManagerConfigFile) {
 		this.cacheManagerConfigFile = cacheManagerConfigFile;
 	}

@@ -50,50 +50,98 @@ public class ShiroKaptchaProperties {
 	/** The cache name for captcha storage. */
 	private String cacheKey;
 
+    /**
+     * <p>Checks if enabled.</p>
+     * @return the is enabled
+     */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+    /**
+     * <p>Sets the enabled.</p>
+     * @param enabled
+     */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 	
+    /**
+     * <p>Returns the retry times when access denied.</p>
+     * @return the get retry times when access denied
+     */
 	public int getRetryTimesWhenAccessDenied() {
 		return retryTimesWhenAccessDenied;
 	}
 
+    /**
+     * <p>Sets the retry times when access denied.</p>
+     * @param retryTimesWhenAccessDenied
+     */
 	public void setRetryTimesWhenAccessDenied(int retryTimesWhenAccessDenied) {
 		this.retryTimesWhenAccessDenied = retryTimesWhenAccessDenied;
 	}
 
+    /**
+     * <p>Returns the store key.</p>
+     * @return the get store key
+     */
 	public String getStoreKey() {
 		return storeKey;
 	}
 
+    /**
+     * <p>Sets the store key.</p>
+     * @param storeKey
+     */
 	public void setStoreKey(String storeKey) {
 		this.storeKey = storeKey;
 	}
 
+    /**
+     * <p>Returns the date store key.</p>
+     * @return the get date store key
+     */
 	public String getDateStoreKey() {
 		return dateStoreKey;
 	}
 
+    /**
+     * <p>Sets the date store key.</p>
+     * @param dateStoreKey
+     */
 	public void setDateStoreKey(String dateStoreKey) {
 		this.dateStoreKey = dateStoreKey;
 	}
 
+    /**
+     * <p>Returns the timeout.</p>
+     * @return the get timeout
+     */
 	public long getTimeout() {
 		return timeout;
 	}
 
+    /**
+     * <p>Sets the timeout.</p>
+     * @param timeout
+     */
 	public void setTimeout(long timeout) {
 		this.timeout = timeout;
 	}
 
+    /**
+     * <p>Returns the cache key.</p>
+     * @return the get cache key
+     */
 	public String getCacheKey() {
 		return cacheKey;
 	}
 
+    /**
+     * <p>Sets the cache key.</p>
+     * @param cacheKey
+     */
 	public void setCacheKey(String cacheKey) {
 		this.cacheKey = cacheKey;
 	}

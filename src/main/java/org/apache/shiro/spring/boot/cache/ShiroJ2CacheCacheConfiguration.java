@@ -51,6 +51,11 @@ public class ShiroJ2CacheCacheConfiguration {
 	 */
 	@Bean
 	@ConditionalOnBean(CacheChannel.class)
+    /**
+     * <p>Shiro cache manager.</p>
+     * @param channel
+     * @return the shiro cache manager
+     */
 	public CacheManager shiroCacheManager(CacheChannel channel) {
 		return new J2CacheManager(channel);
 	}

@@ -31,6 +31,12 @@ import org.apache.shiro.biz.web.filter.authc.captcha.CaptchaResolver;
 public class NullCaptchaResolver implements CaptchaResolver {
 
 	@Override
+    /**
+     * <p>Valid captcha.</p>
+     * @param request
+     * @param token
+     * @return the valid captcha
+     */
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {
 		return false;

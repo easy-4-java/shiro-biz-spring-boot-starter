@@ -51,6 +51,10 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 */
 	@Bean("realmListeners")
 	@ConditionalOnMissingBean(name = "realmListeners")
+    /**
+     * <p>Realm listeners.</p>
+     * @return the realm listeners
+     */
 	public List<AuthorizingRealmListener> realmListeners() {
 
 		List<AuthorizingRealmListener> realmListeners = new ArrayList<AuthorizingRealmListener>();
@@ -75,6 +79,10 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Permission resolver.</p>
+     * @return the permission resolver
+     */
 	public PermissionResolver permissionResolver() {
 		return new BitAndWildPermissionResolver();
 	}
@@ -88,6 +96,11 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Role permission resolver.</p>
+     * @param bizProperties
+     * @return the role permission resolver
+     */
 	public RolePermissionResolver rolePermissionResolver(ShiroBizProperties bizProperties) {
 		DefaultRolePermissionResolver permissionResolver = new DefaultRolePermissionResolver();
 		permissionResolver.setDefaultRolePermissions(bizProperties.getDefaultRolePermissions());
@@ -101,6 +114,10 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+    /**
+     * <p>Credentials matcher.</p>
+     * @return the credentials matcher
+     */
 	public CredentialsMatcher credentialsMatcher() {
 		return new AllowAllCredentialsMatcher();
 	}
@@ -111,15 +128,27 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 * @return the default authentication failure handler
 	 */
 	@Bean
+    /**
+     * <p>Default authentication failure handler.</p>
+     * @return the default authentication failure handler
+     */
 	protected DefaultAuthenticationFailureHandler defaultAuthenticationFailureHandler() {
 		return new DefaultAuthenticationFailureHandler();
 	}
 
 	@Override
+    /**
+     * <p>Sets the application context.</p>
+     * @param applicationContext
+     */
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 
+    /**
+     * <p>Returns the application context.</p>
+     * @return the get application context
+     */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}

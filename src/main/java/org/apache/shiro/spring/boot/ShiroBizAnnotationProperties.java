@@ -53,10 +53,18 @@ public class ShiroBizAnnotationProperties {
 	private String advisorBeanNamePrefix;
 
 
+    /**
+     * <p>Checks if enabled.</p>
+     * @return the is enabled
+     */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+    /**
+     * <p>Sets the enabled.</p>
+     * @param enabled
+     */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -210,6 +218,10 @@ public class ShiroBizAnnotationProperties {
 	}
 
 	@Override
+    /**
+     * <p>To string.</p>
+     * @return the to string
+     */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("proxyTargetClass=").append(this.proxyTargetClass).append("; ");

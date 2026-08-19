@@ -118,14 +118,8 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the header configuration properties
 	 * @return the header filter registration bean
-	 */
 	@Bean("headers")
 	@ConditionalOnMissingBean(name = "headers")
-    /**
-     * <p>Header filter.</p>
-     * @param properties
-     * @return the header filter
-     */
 	public FilterRegistrationBean headerFilter(ShiroHttpServletHeaderProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -140,14 +134,8 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the header configuration properties containing allowed methods
 	 * @return the method filter registration bean
-	 */
 	@Bean("methods")
 	@ConditionalOnMissingBean(name = "methods")
-    /**
-     * <p>Method filter.</p>
-     * @param properties
-     * @return the method filter
-     */
 	public FilterRegistrationBean methodFilter(ShiroHttpServletHeaderProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();
@@ -168,14 +156,8 @@ public class ShiroBizWebFilterConfiguration extends AbstractShiroWebFilterConfig
 	 *
 	 * @param properties the referrer configuration properties
 	 * @return the referrer filter registration bean
-	 */
 	@Bean("referrers")
 	@ConditionalOnMissingBean(name = "referrers")
-    /**
-     * <p>Referrer filter.</p>
-     * @param properties
-     * @return the referrer filter
-     */
 	public FilterRegistrationBean referrerFilter(ShiroHttpServletReferrerProperties properties){
 
 		FilterRegistrationBean registration = new FilterRegistrationBean<>();

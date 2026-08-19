@@ -49,12 +49,7 @@ public class ShiroBizFilterFactoryBean extends ShiroFilterProxyFactoryBean imple
 	 * are {@link AdviceFilter} subclasses, and merges them with the filters from the parent factory bean.
 	 *
 	 * @return the combined map of filter name to filter instance
-	 */
 	@Override
-    /**
-     * <p>Returns the filters.</p>
-     * @return the get filters
-     */
 	public Map<String, Filter> getFilters() {
 
 		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();

@@ -329,12 +329,7 @@ public class ShiroBizWebAutoConfiguration extends AbstractShiroWebConfiguration 
 	 * rememberMeProperties.isSecure()); } return super.rememberMeCookieTemplate();
 	 *
 	 * }
-	 */
 	@Override
-    /**
-     * <p>Sets the application context.</p>
-     * @param applicationContext
-     */
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}

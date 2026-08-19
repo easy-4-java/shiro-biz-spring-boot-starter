@@ -37,13 +37,8 @@ public class ShiroRedissonCacheConfiguration {
 	 * Creates a default {@link Codec} for Redisson cache serialization.
 	 *
 	 * @return the string codec
-	 */
 	@Bean
 	@ConditionalOnMissingBean
-    /**
-     * <p>Codec.</p>
-     * @return the codec
-     */
 	protected Codec codec() {
 		return new StringCodec();
 	}

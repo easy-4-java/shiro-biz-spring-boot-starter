@@ -48,13 +48,8 @@ public class ShiroBizAutoConfiguration implements ApplicationContextAware {
 	 * authentication success and failure events, enabling business-specific actions such as logging.
 	 *
 	 * @return a list of realm listeners
-	 */
 	@Bean("realmListeners")
 	@ConditionalOnMissingBean(name = "realmListeners")
-    /**
-     * <p>Realm listeners.</p>
-     * @return the realm listeners
-     */
 	public List<AuthorizingRealmListener> realmListeners() {
 
 		List<AuthorizingRealmListener> realmListeners = new ArrayList<AuthorizingRealmListener>();

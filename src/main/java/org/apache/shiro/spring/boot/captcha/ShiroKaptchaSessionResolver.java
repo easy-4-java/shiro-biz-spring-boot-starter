@@ -62,14 +62,7 @@ public class ShiroKaptchaSessionResolver implements CaptchaResolver {
 	 * @param token the captcha authentication token
 	 * @return true if the captcha is valid
 	 * @throws AuthenticationException if the captcha is incorrect or expired
-	 */
 	@Override
-    /**
-     * <p>Valid captcha.</p>
-     * @param request
-     * @param token
-     * @return the valid captcha
-     */
 	public boolean validCaptcha(ServletRequest request, CaptchaAuthenticationToken token)
 			throws AuthenticationException {
 		// 验证码无效

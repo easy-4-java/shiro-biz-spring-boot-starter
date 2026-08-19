@@ -34,6 +34,12 @@ import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(ShiroBizProperties.PREFIX)
+/**
+ * <p>Configuration properties for ShiroBiz.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ShiroBizProperties {
 
 	public static final String PREFIX = "shiro";

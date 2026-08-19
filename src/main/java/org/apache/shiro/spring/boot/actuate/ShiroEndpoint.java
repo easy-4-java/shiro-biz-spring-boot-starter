@@ -37,6 +37,12 @@ import com.google.common.collect.Maps;
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Endpoint(id = "shiro")
+/**
+ * <p>ShiroEndpoint implementation.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ShiroEndpoint {
 	
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");

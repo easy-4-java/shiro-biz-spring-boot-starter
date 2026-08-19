@@ -41,6 +41,12 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnEnabledHealthIndicator("shiro")
 @AutoConfigureBefore(EndpointAutoConfiguration.class)
 @AutoConfigureAfter({ShiroBizWebAutoConfiguration.class, HealthContributorAutoConfiguration.class})
+/**
+ * <p>Spring Boot auto-configuration for ShiroEndpoint.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ShiroEndpointAutoConfiguration {
 
 	@Bean
